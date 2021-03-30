@@ -14,8 +14,10 @@ tạo struct staff | student
 
 add vào CSV.file (chia rõ file 19, 20, 21, staff)
 
-- Tạo hàm addFromKeyb (name, id, class,....)	 |-> đưa ra CSV file tổng của student.    (Quốc)
-- Tạo hàm addFromCSV (string fileName) 		 | 					  (Bảo)
+- Tạo hàm addFromKeyb (name, id, class,...., role)	 |-> đưa ra CSV file tổng của student.    (Quốc)
+					     *dựa vào role này để add vào đúng list.
+					     *role không nằm trong struct nào cả.
+- Tạo hàm addFromCSV (string fileName) 		 	 | 					  (Bảo)
 
 - Tạo hàm bool checkLogIn(username, password)	- Nếu ktra là học sinh -> giao diện riêng (Dâng)
 						- Nếu ktra là staff -> giao diện riêng
