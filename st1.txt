@@ -1,0 +1,35 @@
+tạo struct marks
+{
+	midterm, final, lab;
+}
+
+tạo struct staff | student
+{
+	name, id, birth, username, password,...
+	marks math, physics; // các môn trong học phần đã đăng kí.
+	staff* pNext;
+}
+
+// giáo vụ username có chữ F đầu, học sinh có chữ T đầu.
+
+add vào CSV.file (chia rõ file 19, 20, 21, staff)
+
+- Tạo hàm addFromKeyb (name, id, class,....)	 |-> đưa ra CSV file tổng của student.    (Quốc)
+- Tạo hàm addFromCSV (string fileName) 		 | 					  (Bảo)
+
+- Tạo hàm bool checkLogIn(username, password)	- Nếu ktra là học sinh -> giao diện riêng (Dâng)
+						- Nếu ktra là staff -> giao diện riêng
+
+- Tạo hàm đưa thông tin vào data(CSV file) đưa vào kiểu chèn (2 hàm)			  (Nhân)
+
+// Mỗi sv sẽ có 1 file.txt riêng								  ()
+
+
+update data từ file CSV (lưu vào nhiều list) 						  ()
+
+deadline 23h59ph t6.
+
+FILE CHO SV : STUDENT.txt
+Tvhdang20.txt
+Ttkquoc20.txt
+FILE CHO GV : STAFF.txt
