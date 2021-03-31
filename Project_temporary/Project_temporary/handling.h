@@ -29,3 +29,14 @@ struct staffNode {
 };
 
 #endif // !_HANDLING_H_
+void addStaffNode(staffNode*& head, staffNode*& end, staffNode* pItem)
+{
+	if (!head)
+	{
+		head = pItem;
+		end = pItem;
+		return;
+	}
+	end->pNext = pItem;
+	end = end->pNext;
+}
