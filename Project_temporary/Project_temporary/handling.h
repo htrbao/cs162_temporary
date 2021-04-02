@@ -30,7 +30,7 @@ struct staffNode {
 
 void addStudentNode(studentNode*& head, studentNode*& end, studentNode* pItem);
 void addStaffNode(staffNode*& head, staffNode*& end, staffNode* pItem);
-void addDataToStaffCsvFile(ofstream fout, staffNode* pHead);
-void addDataToStudentCsvFile(ofstream fout, studentNode* pHead);
+void addDataToStaffCsvFile(staffNode* pHead);
+void addDataToStudentCsvFile(studentNode* pHead);
 
 #endif // !_HANDLING_H_

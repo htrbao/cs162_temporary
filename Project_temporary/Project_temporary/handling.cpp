@@ -24,27 +24,17 @@ void addStaffNode(staffNode*& head, staffNode*& end, staffNode* pItem)
 	end = end->pNext;
 }
 
-void addDataToStaffCsvFile(ofstream fout, staffNode* pHead)
+void addDataToStaffCsvFile(staffNode* pItem)
 {
-	staffNode* pCur = pHead;
+	ofstream fout;
 	fout.open("STAFF.txt", ios::app);
-	fout << "name,id,username,password";
-	while (pCur != nullptr) {
-		fout << pCur->name << "," << pCur->id << "," << pCur->username << "," << pCur->password;
-		pCur = pCur->pNext;
-	}
-
+	fout << pItem->name << "," << pItem->id << "," << pItem->username << "," << pItem->password;
 	fout.close();
 }
 
-void addDataToStudentCsvFile(ofstream fout, studentNode* pHead) {
-	studentNode* pCur = pHead;
+void addDataToStudentCsvFile(studentNode* pItem) {
+	ofstream fout;
 	fout.open("STUDENT.txt", ios::app);
-	fout << "name,id,username,password";
-	while (pCur != nullptr) {
-		fout << pCur->name << "," << pCur->id << "," << pCur->username << "," << pCur->password;
-		pCur = pCur->pNext;
-	}
-
+	fout << pItem->name << "," << pItem->id << "," << pItem->username << "," << pItem->password;
 	fout.close();
 }
