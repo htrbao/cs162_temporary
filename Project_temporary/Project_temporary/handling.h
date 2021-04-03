@@ -4,7 +4,7 @@
 
 #include <iostream>
 #include <fstream>
-
+#include <string>
 using namespace std;
 
 struct subject {
@@ -32,5 +32,8 @@ void addStudentNode(studentNode*& head, studentNode*& end, studentNode* pItem);
 void addStaffNode(staffNode*& head, staffNode*& end, staffNode* pItem);
 void addDataToStaffCsvFile(staffNode* pHead);
 void addDataToStudentCsvFile(studentNode* pHead);
+bool checkLogInStaff(string username, string password);
+bool checkLogInStudent(string username, string password);
+bool checkLogin(string username, string password);
 
 #endif // !_HANDLING_H_
