@@ -113,3 +113,11 @@ bool checkLogin(string username, string password)
 {
     if (!checkLogInStudent(username, password) && !checkLogInStaff(username, password)) return false;
 }
+
+void addFromKeyb(int no, int StudentID, string Firstname, string Lastname, string gender, long DateofBirth, int SocialID, int role)
+{
+	if (role == T)
+		addDataToStaffCsvFile(ofstream fout, staffNode * pHead);
+	else
+		addDataToStudentCsvFile(ofstream fout, studentNode * pHead);
+}
