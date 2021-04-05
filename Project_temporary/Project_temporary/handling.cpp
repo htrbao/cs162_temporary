@@ -107,7 +107,7 @@ void addDataToStudentCsvFile(studentNode* pItem) {
 	fout.close();
 }
 
-void addFromKeyb(string name, string id, string username, string password, string role, studentNode*& headT, studentNode*& endT, staffNode*& headF, staffNode*& endF)
+void addFromKeyb(string name, string id, string username, string password, string birthday, string role, studentNode*& headT, studentNode*& endT, staffNode*& headF, staffNode*& endF)
 {
 	if (role == "student")
 	{
@@ -116,6 +116,8 @@ void addFromKeyb(string name, string id, string username, string password, strin
 		pItemT->id = id;
 		pItemT->username = username;
 		pItemT->password = password;
+		pItemT->birthday = stoi(birthday);
+		pItemT->pNext = nullptr;
 		addStudentNode(headT, endT, pItemT);
 		addDataToStudentCsvFile(pItemT);
 	}
@@ -126,6 +128,8 @@ void addFromKeyb(string name, string id, string username, string password, strin
 		pItemF->id = id;
 		pItemF->username = username;
 		pItemF->password = password;
+		pItemF->birthday = stoi(birthday);
+		pItemF->pNext = nullptr;
 		addStaffNode(headF, endF, pItemF);
 		addDataToStaffCsvFile(pItemF);
 	}
