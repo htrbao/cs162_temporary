@@ -1,5 +1,12 @@
 #include "handling.h"
-using namespace std;
+
+void printBirthday(long b)
+{
+	cout << b / 1000000;
+	cout << '/' << (b / 10000) % 100;
+	cout << '/' << b % 10000;
+}
+
 void addStudentNode(studentNode*& head, studentNode*& end, studentNode* pItem)
 {
 	if (!head)
@@ -24,7 +31,7 @@ void addStaffNode(staffNode*& head, staffNode*& end, staffNode* pItem)
 	end = end->pNext;
 }
 
-bool addFromCSV(string filename)
+bool addFromCSV(string filename, studentNode* &pTH, studentNode*& pTE, staffNode* &pFH, staffNode* &pFE)
 {
 	ifstream f;
 	f.open(filename);
@@ -51,6 +58,7 @@ bool addFromCSV(string filename)
 		pItem->password = password;
 		pItem->birthday = stoi(birthday);
 		pItem->pNext = nullptr;
+		addStudentNode(pTH, pTE, pItem);
 		addDataToStudentCsvFile(pItem);
 	}
 	else if (role == "staff") {
@@ -74,6 +82,7 @@ bool addFromCSV(string filename)
 		pItem->password = password;
 		pItem->birthday = stoi(birthday);
 		pItem->pNext = nullptr;
+		addStaffNode(pFH, pFE, pItem);
 		addDataToStaffCsvFile(pItem);
 	}
 	else {
@@ -108,6 +117,6 @@ void addFromKeyb(string name, string id, string username, string password, strin
 	else
 	{
 		addStaffNode(headF, endF, pItemF);
-		addDataToStaffCsvFile(staffNode * pItemF);
+		addDataToStaffCsvFile(pItemF);
 	}
 }
