@@ -3,6 +3,7 @@
 #define _HANGDLING_H_
 
 #include <iostream>
+#include <string>
 #include <fstream>
 
 using namespace std;
@@ -30,6 +31,7 @@ struct staffNode {
 
 void addStudentNode(studentNode*& head, studentNode*& end, studentNode* pItem);
 void addStaffNode(staffNode*& head, staffNode*& end, staffNode* pItem);
+bool addFromCSV(string filename);
 void addDataToStaffCsvFile(staffNode* pHead);
 void addDataToStudentCsvFile(studentNode* pHead);
 

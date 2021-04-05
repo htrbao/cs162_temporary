@@ -23,7 +23,6 @@ add vào CSV.file (chia rõ file 19, 20, 21, staff)
 						- Nếu ktra là staff -> giao diện riêng
 
 - Tạo hàm đưa thông tin vào data(CSV file) đưa vào kiểu chèn (2 hàm)			  (Nhân)
-
 // Mỗi sv sẽ có 1 file.txt riêng								  ()
 
 
