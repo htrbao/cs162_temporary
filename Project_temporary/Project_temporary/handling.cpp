@@ -98,3 +98,16 @@ void addDataToStudentCsvFile(studentNode* pItem) {
 	fout.close();
 }
 
+void addFromKeyb(string name, string id, string username, string password, string role, studentNode*& headT, studentNode*& endT, studentNode* pItemT, staffNode*& headF, staffNode*& endF, staffNode* pItemF)
+{
+	if (role == "student")
+	{
+		addStudentNode(headT, endT, pItemT);
+		addDataToStudentCsvFile(pItemT);
+	}
+	else
+	{
+		addStaffNode(headF, endF, pItemF);
+		addDataToStaffCsvFile(staffNode * pItemF);
+	}
+}

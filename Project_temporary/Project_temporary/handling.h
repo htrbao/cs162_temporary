@@ -34,5 +34,5 @@ void addStaffNode(staffNode*& head, staffNode*& end, staffNode* pItem);
 bool addFromCSV(string filename);
 void addDataToStaffCsvFile(staffNode* pHead);
 void addDataToStudentCsvFile(studentNode* pHead);
-
+void addFromKeyb(string name, string id, string username, string password, string role, studentNode*& headT, studentNode*& endT, studentNode* pItemT, staffNode*& headF, staffNode*& endF, staffNode* pItemF)
 #endif // !_HANDLING_H_
