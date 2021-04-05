@@ -34,8 +34,5 @@ void addStaffNode(staffNode*& head, staffNode*& end, staffNode* pItem);
 bool addFromCSV(string filename);
 void addDataToStaffCsvFile(staffNode* pHead);
 void addDataToStudentCsvFile(studentNode* pHead);
-bool checkLogInStaff(string username, string password);
-bool checkLogInStudent(string username, string password);
-bool checkLogin(string username, string password);
 
 #endif // !_HANDLING_H_
