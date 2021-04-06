@@ -96,14 +96,14 @@ void addDataToStaffCsvFile(staffNode* pItem)
 {
 	ofstream fout;
 	fout.open("STAFF.txt", ios::app);
-	fout << pItem->name << "," << pItem->id << "," << pItem->username << "," << pItem->password;
+	fout << pItem->name << "," << pItem->id << "," << pItem->username << "," << pItem->password << "," << pItem->birthday;
 	fout.close();
 }
 
 void addDataToStudentCsvFile(studentNode* pItem) {
 	ofstream fout;
 	fout.open("STUDENT.txt", ios::app);
-	fout << pItem->name << "," << pItem->id << "," << pItem->username << "," << pItem->password;
+	fout << pItem->name << "," << pItem->id << "," << pItem->username << "," << pItem->password << "," << pItem->birthday;
 	fout.close();
 }
 
