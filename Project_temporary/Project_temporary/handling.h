@@ -31,7 +31,7 @@ struct staffNode {
 };
 
 extern staffNode* headStaff, * endStaff;
-extern studentNode* headStudent, *endStudent;
+extern studentNode* headStudent, * endStudent;
 
 void printBirthday(long b);
 void addStudentNode(studentNode*& head, studentNode*& end, studentNode* pItem);

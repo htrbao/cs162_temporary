@@ -12,7 +12,7 @@ void printBirthday(long b)
 
 void addStudentNode(studentNode*& head, studentNode*& end, studentNode* pItem)
 {
-	pItem->pNext = head;
+	pItem->pNext = nullptr;
 	pItem->pPrev = end;
 	if (!head)
 	{
@@ -26,7 +26,7 @@ void addStudentNode(studentNode*& head, studentNode*& end, studentNode* pItem)
 
 void addStaffNode(staffNode*& head, staffNode*& end, staffNode* pItem)
 {
-	pItem->pNext = head;
+	pItem->pNext = nullptr;
 	pItem->pPrev = end;
 	if (!head)
 	{
