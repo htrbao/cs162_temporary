@@ -1,5 +1,8 @@
 #include "handling.h"
 
+staffNode* headStaff;
+studentNode* headStudent;
+
 void printBirthday(long b)
 {
 	cout << b / 1000000;
@@ -107,6 +110,7 @@ void addDataToStudentCsvFile(studentNode* pItem) {
 	fout.close();
 }
 
+
 void addFromKeyb(string name, string id, string username, string password, string birthday, string role, studentNode*& headT, studentNode*& endT, staffNode*& headF, staffNode*& endF)
 {
 	if (role == "student")
@@ -133,4 +137,34 @@ void addFromKeyb(string name, string id, string username, string password, strin
 		addStaffNode(headF, endF, pItemF);
 		addDataToStaffCsvFile(pItemF);
 	}
+}
+bool checkLogin(string username, string password)
+{
+	if (username[0] == 'F')
+	{
+		staffNode* temp = headStaff;
+		while (temp)
+		{
+			if (!temp->username.compare(username) && !temp->password.compare(password))
+			{
+				cout << "staff" << endl; //chinh sua sau
+				return true;
+			}
+			temp = temp->pNext;
+		}
+	}
+	else if (username[0] == 'T')
+	{
+		studentNode* temp = headStudent;
+		while (temp)
+		{
+			if (!temp->username.compare(username) && !temp->password.compare(password))
+			{
+				cout << "student" << endl;
+				return true;
+			}
+			temp = temp->pNext;
+		}
+	}
+	return false;
 }

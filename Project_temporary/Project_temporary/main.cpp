@@ -1,10 +1,9 @@
-#include"handling.h"
+#include "handling.h"
 
-staffNode* headStaff;
-studentNode* headStudent;
+
 
 int main()
 {
-	
+
 	return 0;
 }

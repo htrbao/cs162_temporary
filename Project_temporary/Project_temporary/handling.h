@@ -1,3 +1,4 @@
+#pragma once
 #ifndef _HANDLING_H_
 
 #define _HANGDLING_H_
@@ -7,6 +8,9 @@
 #include <fstream>
 
 using namespace std;
+
+
+
 
 struct subject {
 	string subName, subID;
@@ -29,11 +33,17 @@ struct staffNode {
 	staffNode* pNext, *pPrev;
 };
 
+
+
+extern staffNode* headStaff;
+extern studentNode* headStudent;
+
 void printBirthday(long b);
 void addStudentNode(studentNode*& head, studentNode*& end, studentNode* pItem);
 void addStaffNode(staffNode*& head, staffNode*& end, staffNode* pItem);
 bool addFromCSV(string filename, studentNode*& pTH, studentNode*& pTE, staffNode*& pFH, staffNode*& pFE);
 void addDataToStaffCsvFile(staffNode* pHead);
 void addDataToStudentCsvFile(studentNode* pHead);
-void addFromKeyb(string name, string id, string username, string password, string role, studentNode*& headT, studentNode*& endT, staffNode*& headF, staffNode*& endF);
+void addFromKeyb(string name, string id, string username, string password, string birthday, string role, studentNode*& headT, studentNode*& endT, staffNode*& headF, staffNode*& endF);
+bool checkLogin(string username, string password);
 #endif // !_HANDLING_H_
