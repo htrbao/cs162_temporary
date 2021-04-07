@@ -9,9 +9,6 @@
 
 using namespace std;
 
-
-
-
 struct subject {
 	string subName, subID;
 };
@@ -30,13 +27,11 @@ struct studentNode {
 struct staffNode {
 	string name, id, username, password;
 	long birthday; //ddmmyyyy
-	staffNode* pNext, *pPrev;
+	staffNode* pNext, * pPrev;
 };
 
-
-
-extern staffNode* headStaff;
-extern studentNode* headStudent;
+extern staffNode* headStaff, * endStaff;
+extern studentNode* headStudent, *endStudent;
 
 void printBirthday(long b);
 void addStudentNode(studentNode*& head, studentNode*& end, studentNode* pItem);

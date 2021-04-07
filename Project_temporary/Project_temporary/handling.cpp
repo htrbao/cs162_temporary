@@ -1,7 +1,7 @@
 #include "handling.h"
 
-staffNode* headStaff;
-studentNode* headStudent;
+staffNode* headStaff,* endStaff;
+studentNode* headStudent,* endStudent;
 
 void printBirthday(long b)
 {
@@ -12,6 +12,8 @@ void printBirthday(long b)
 
 void addStudentNode(studentNode*& head, studentNode*& end, studentNode* pItem)
 {
+	pItem->pNext = head;
+	pItem->pPrev = end;
 	if (!head)
 	{
 		head = pItem;
@@ -24,6 +26,8 @@ void addStudentNode(studentNode*& head, studentNode*& end, studentNode* pItem)
 
 void addStaffNode(staffNode*& head, staffNode*& end, staffNode* pItem)
 {
+	pItem->pNext = head;
+	pItem->pPrev = end;
 	if (!head)
 	{
 		head = pItem;
@@ -98,14 +102,14 @@ bool addFromCSV(string filename, studentNode* &pTH, studentNode*& pTE, staffNode
 void addDataToStaffCsvFile(staffNode* pItem)
 {
 	ofstream fout;
-	fout.open("STAFF.txt", ios::app);
+	fout.open("STAFF.csv", ios::app);
 	fout << pItem->name << "," << pItem->id << "," << pItem->username << "," << pItem->password << "," << pItem->birthday;
 	fout.close();
 }
 
 void addDataToStudentCsvFile(studentNode* pItem) {
 	ofstream fout;
-	fout.open("STUDENT.txt", ios::app);
+	fout.open("STUDENT.csv", ios::app);
 	fout << pItem->name << "," << pItem->id << "," << pItem->username << "," << pItem->password << "," << pItem->birthday;
 	fout.close();
 }
