@@ -38,11 +38,12 @@ void addStaffNode(staffNode*& head, staffNode*& end, staffNode* pItem)
 	end = end->pNext;
 }
 
-bool addFromCSV(string filename, studentNode* &pTH, studentNode*& pTE, staffNode* &pFH, staffNode* &pFE)
+bool addFromCSV(string filename)
 {
 	ifstream f;
 	f.open(filename);
 	string role;
+	getline(f, role, '\n');
 	getline(f, role, ',');
 	if (role == "student") {
 		studentNode* pItem = new studentNode;
@@ -65,7 +66,7 @@ bool addFromCSV(string filename, studentNode* &pTH, studentNode*& pTE, staffNode
 		pItem->password = password;
 		pItem->birthday = stoi(birthday);
 		pItem->pNext = nullptr;
-		addStudentNode(pTH, pTE, pItem);
+		addStudentNode(headStudent, endStudent, pItem);
 		addDataToStudentCsvFile(pItem);
 	}
 	else if (role == "staff") {
@@ -89,7 +90,7 @@ bool addFromCSV(string filename, studentNode* &pTH, studentNode*& pTE, staffNode
 		pItem->password = password;
 		pItem->birthday = stoi(birthday);
 		pItem->pNext = nullptr;
-		addStaffNode(pFH, pFE, pItem);
+		addStaffNode(headStaff, endStaff, pItem);
 		addDataToStaffCsvFile(pItem);
 	}
 	else {

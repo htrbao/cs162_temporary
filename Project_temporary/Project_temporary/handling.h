@@ -36,7 +36,7 @@ extern studentNode* headStudent, * endStudent;
 void printBirthday(long b);
 void addStudentNode(studentNode*& head, studentNode*& end, studentNode* pItem);
 void addStaffNode(staffNode*& head, staffNode*& end, staffNode* pItem);
-bool addFromCSV(string filename, studentNode*& pTH, studentNode*& pTE, staffNode*& pFH, staffNode*& pFE);
+bool addFromCSV(string filename);
 void addDataToStaffCsvFile(staffNode* pHead);
 void addDataToStudentCsvFile(studentNode* pHead);
 void addFromKeyb(string name, string id, string username, string password, string birthday, string role, studentNode*& headT, studentNode*& endT, staffNode*& headF, staffNode*& endF);

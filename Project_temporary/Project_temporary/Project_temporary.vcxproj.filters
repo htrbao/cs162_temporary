@@ -21,12 +21,21 @@
     <ClCompile Include="handling.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="interface.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="staffInterface.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="handling.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="interface.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="staffInterface.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
