@@ -116,7 +116,7 @@ void addDataToStudentCsvFile(studentNode* pItem) {
 }
 
 
-void addFromKeyb(string name, string id, string username, string password, string birthday, string role, studentNode*& headT, studentNode*& endT, staffNode*& headF, staffNode*& endF)
+void addFromKeyb(string name, string id, string username, string password, string birthday, string role)
 {
 	if (role == "student")
 	{
@@ -127,7 +127,7 @@ void addFromKeyb(string name, string id, string username, string password, strin
 		pItemT->password = password;
 		pItemT->birthday = stoi(birthday);
 		pItemT->pNext = nullptr;
-		addStudentNode(headT, endT, pItemT);
+		addStudentNode(headStudent, endStudent, pItemT);
 		addDataToStudentCsvFile(pItemT);
 	}
 	else
@@ -139,7 +139,7 @@ void addFromKeyb(string name, string id, string username, string password, strin
 		pItemF->password = password;
 		pItemF->birthday = stoi(birthday);
 		pItemF->pNext = nullptr;
-		addStaffNode(headF, endF, pItemF);
+		addStaffNode(headStaff, endStaff, pItemF);
 		addDataToStaffCsvFile(pItemF);
 	}
 }
@@ -173,3 +173,5 @@ bool checkLogin(string username, string password)
 	}
 	return false;
 }
+
+
