@@ -20,3 +20,5 @@ void avatar(bool i, short posX, short posY); // draw avatar randomly at position
 void setTextColor(long color);
 
 void showInput(bool show, HANDLE hStdin, DWORD mode);
+
+void welcome();
