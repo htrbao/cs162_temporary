@@ -1,5 +1,7 @@
 #include "interface.h"
 
+
+
 void DisableCtrButton(bool Close, bool Min, bool Max)
 {
 	HWND hWnd = GetConsoleWindow();
@@ -120,3 +122,21 @@ void avatar(bool i, short posX, short posY)
 		drawRec2(1, 1, posX, posY);
 	}
 }
+
+void showInput(bool show, HANDLE hStdin, DWORD mode)
+{
+
+
+	if (show)
+	{
+
+
+		SetConsoleMode(hStdin, mode & (~ENABLE_INSERT_MODE));
+	}
+	else
+	{
+
+		SetConsoleMode(hStdin, mode & (~ENABLE_ECHO_INPUT));
+	}
+}
+
