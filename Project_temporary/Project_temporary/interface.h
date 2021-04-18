@@ -1,3 +1,7 @@
+#ifndef _INTERFACE_H_
+
+#define _INTERFACE_H_
+
 #include <Windows.h>
 #include <iostream>
 #include <conio.h>
@@ -5,6 +9,11 @@
 
 using namespace std;
 
+struct roll{
+	long x, y;
+	short color;
+	string message;
+};
 
 void DisableCtrButton(bool Close, bool Min, bool Max); // disable buttons with windows
 
@@ -23,3 +32,5 @@ void setTextColor(long color);
 void showInput(bool show, HANDLE hStdin, DWORD mode);
 
 void welcome();
+
+#endif // !_INTERFACE_H_

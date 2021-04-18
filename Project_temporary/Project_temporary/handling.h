@@ -7,22 +7,25 @@
 #include <string>
 #include <fstream>
 
-
 using namespace std;
 
 struct subject {
 	string subName, subID;
-};
-
-struct marks {
 	double midterm, final, lab;
+	subject* pNext, * pPrev;
 };
 
 struct studentNode {
-	string name, id, username, password;
+	string name, id, classname, username, password;
 	long birthday; //ddmmyyyy
-	marks Maths, Physics, CS; //initialization value is -1;
+	subject* headSubject;
 	studentNode* pNext,* pPrev;
+};
+
+struct Class {
+	string name;
+	studentNode* headStudent,* endStudent;
+	Class* pNext, *pPrev;
 };
 
 struct staffNode {
@@ -31,15 +34,23 @@ struct staffNode {
 	staffNode* pNext, * pPrev;
 };
 
+extern Class* headClass,* endClass;
 extern staffNode* headStaff, * endStaff;
-extern studentNode* headStudent, * endStudent;
 
+Class* findClass(string classname, bool doAdd);
+void updateStudent(string filename);
+void updateStaff(string filename);
+void addClassNode(string classname);
 void printBirthday(long b);
-void addStudentNode(studentNode*& head, studentNode*& end, studentNode* pItem);
-void addStaffNode(staffNode*& head, staffNode*& end, staffNode* pItem);
+void addStudentNode(Class*& pClass, studentNode* pItem);
+void addStaffNode(staffNode* pItem);
 bool addFromCSV(string filename);
 void addDataToStaffCsvFile(staffNode* pHead);
 void addDataToStudentCsvFile(studentNode* pHead);
-void addFromKeyb(string name, string id, string username, string password, string birthday, string role, studentNode*& headT, studentNode*& endT, staffNode*& headF, staffNode*& endF);
-bool checkLogin(string username, string password);
+void addFromKeyb(string name, string id, string cl, string username, string password, string birthday, string role, studentNode*& headStudent, studentNode*& endStudent);
+void displayClassList();
+void displayStudentList(Class* pClass);
+bool checkLogin(string username, string password, studentNode*& headStudent, studentNode*& endStudent);
+void cleanUpClass();
+void cleanUpStaff();
 #endif // !_HANDLING_H_
