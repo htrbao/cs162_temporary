@@ -1,6 +1,28 @@
 #include "staffInterface.h"
 
-roll* setting;
+void clearStaffScreen()
+{
+	for (long i = 0; i <= 159; i++)
+	{
+		for (long j = 9; j <= 40; j++)
+		{
+			gotoxy(i, j);
+			cout << ' ';
+		}
+	}
+}
+
+void clearSettingScreen()
+{
+	for (long i = 161; i <= 199; i++)
+	{
+		for (long j = 6; j <= 40; j++)
+		{
+			gotoxy(i, j);
+			cout << ' ';
+		}
+	}
+}
 
 void printSettingBox(roll* setting, long n)
 {
@@ -21,6 +43,7 @@ void printSettingBox(roll* setting, long n)
 void initialStaffBackground(staffNode* pItem)
 {
 	avatar(2, 162, 1);
+	setTextColor(7);
 	gotoxy(167, 2); cout << pItem->name;
 
 	gotoxy(0, 5);
@@ -35,11 +58,65 @@ void initialStaffBackground(staffNode* pItem)
 	}
 }
 
+void aboutProfile(staffNode* pItem)
+{
+	long numberSetting = 3, cnt = 0;
+	roll* set = new roll[10];
+	set[0].message = pItem->name + " 's profile";
+	set[1].message = "Setting & Privacy";
+	set[2].message = "Log out";
+
+	for (long i = 0; i < numberSetting; i++)
+	{
+		set[i].x = 167;
+		set[i].color = 8;
+	}
+
+	set[0].y = 9;
+	set[1].y = 13;
+	set[2].y = 15;
+
+	set[0].color = 15;
+
+	printSettingBox(set, numberSetting);
+
+	while(1)
+	{
+		char c = _getch();
+
+		if (c == char(72) || c == 'w' || c == 'W') cnt--;
+		else if (c == char(80) || c == 's' || c == 'S') cnt++;
+		
+		if (cnt < 0) {
+			break;
+		}
+
+		if (cnt < 0) cnt = numberSetting - 1;
+		if (cnt == numberSetting) cnt = 0;
+
+		for (long i = 0; i < numberSetting; i++)
+		{
+			set[i].color = 8;
+		}
+		set[cnt].color = 15;
+
+		if (cnt == numberSetting - 1) set[cnt].color = 9 * 16 + 15;
+		printSettingBox(set, numberSetting);
+	}
+
+	clearSettingScreen();
+
+	delete[] set;
+}
+
 void staffMenu(staffNode* pItem)
 {
 	ShowCur(0);
 	long numberSetting = 4;
+
+	roll* setting;
 	setting = new roll[10];
+
 	setting[0].message = "CREAT NEW CLASS";
 	setting[1].message = "ADD NEW STUDENT";
 	setting[2].message = "STUDENT";
@@ -62,12 +139,16 @@ void staffMenu(staffNode* pItem)
 	printSettingBox(setting, numberSetting);
 	while (1) {
 		char c = _getch();
+
 		if (c == char(75) || c == 'a' || c == 'A') cnt--;
 		else if (c == char(77) || c == 'd' || c == 'D') cnt++;
-		else if (c == char(13)) {
-			delete[] setting;
-			return;
+		
+		if (c == char(13) || c == char(80)) {
+			if (cnt == 3) {
+				aboutProfile(pItem);
+			}
 		}
+
 		if (cnt < 0) cnt = numberSetting - 1;
 		if (cnt == numberSetting) cnt = 0;
 
@@ -79,4 +160,5 @@ void staffMenu(staffNode* pItem)
 		if (cnt == numberSetting - 1) setting[cnt].color = 100;
 		printSettingBox(setting, numberSetting);
 	}
+	delete[] setting;
 }

@@ -5,6 +5,12 @@
 #include "handling.h"
 #include "interface.h"
 
+void clearStaffScreen();
+
+void clearSettingScreen();
+
+void aboutProfile(staffNode* pItem);
+
 void initialStaffBackground(staffNode* pItem);
 
 void staffMenu(staffNode* pItem);

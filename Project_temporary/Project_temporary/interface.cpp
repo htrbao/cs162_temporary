@@ -49,6 +49,7 @@ void setTextColor(long color)
 
 void drawRec(long x, long y, long posX, long posY)
 {
+	setTextColor(random(15));
 	x = x + 2;
 	y = y * 4 + 1;
 	gotoxy(posX, posY);
@@ -76,12 +77,14 @@ void drawRec(long x, long y, long posX, long posY)
 		else if (i == y) cout << char(217);
 		else cout << char(196);
 	}
+	setTextColor(8);
 }
 
 void drawRec2(long x, long y, long posX, long posY)
 {
 	x = x + 2;
 	y = y * 4 + 1;
+	setTextColor(9);
 	gotoxy(posX, posY);
 	for (long i = 1; i <= y; i++)
 	{
@@ -107,6 +110,7 @@ void drawRec2(long x, long y, long posX, long posY)
 		else if (i == y) cout << char(188);
 		else cout << char(205);
 	}
+	setTextColor(8);
 }
 
 void avatar(bool i, short posX, short posY)
@@ -119,6 +123,8 @@ void avatar(bool i, short posX, short posY)
 	{
 		drawRec2(1, 1, posX, posY);
 	}
+	gotoxy(posX + 2, posY + 1); setTextColor(random(15) * 16); cout << ' ';
+	setTextColor(8);
 }
 
 void showInput(bool show, HANDLE hStdin, DWORD mode)

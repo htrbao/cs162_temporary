@@ -10,6 +10,12 @@ void printBirthday(long b)
 	cout << '/' << b % 10000;
 }
 
+long random(long n)
+{
+	srand(time(NULL));
+	return rand() % n + 1;
+}
+
 Class* findClass(string classname, bool doAdd)
 {
 	Class* pClass = headClass;

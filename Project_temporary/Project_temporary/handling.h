@@ -6,6 +6,7 @@
 #include <iostream>
 #include <string>
 #include <fstream>
+#include <ctime>
 
 using namespace std;
 
@@ -37,6 +38,7 @@ struct staffNode {
 extern Class* headClass,* endClass;
 extern staffNode* headStaff, * endStaff;
 
+long random(long n);
 Class* findClass(string classname, bool doAdd);
 void updateStudent(string filename);
 void updateStaff(string filename);
