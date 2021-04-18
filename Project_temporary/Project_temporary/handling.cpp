@@ -1,7 +1,7 @@
 #include "handling.h"
 
+Class* headClass,* endClass;
 staffNode* headStaff,* endStaff;
-studentNode* headStudent,* endStudent;
 
 void printBirthday(long b)
 {
@@ -10,32 +10,135 @@ void printBirthday(long b)
 	cout << '/' << b % 10000;
 }
 
-void addStudentNode(studentNode*& head, studentNode*& end, studentNode* pItem)
+Class* findClass(string classname, bool doAdd)
 {
-	pItem->pNext = nullptr;
-	pItem->pPrev = end;
-	if (!head)
+	Class* pClass = headClass;
+	while (pClass)
 	{
-		head = pItem;
-		end = pItem;
-		return;
+		if (pClass->name == classname) return pClass;
+		pClass = pClass->pNext;
 	}
-	end->pNext = pItem;
-	end = end->pNext;
+
+	if (doAdd) {
+		addClassNode(classname);
+		return endClass;
+	}
+	else return nullptr;
 }
 
-void addStaffNode(staffNode*& head, staffNode*& end, staffNode* pItem)
+void updateStudent(string filename)
 {
-	pItem->pNext = nullptr;
-	pItem->pPrev = end;
-	if (!head)
+	ifstream f;
+	f.open(filename);
+	string role;
+	getline(f, role, '\n');
+	while (!f.eof())
 	{
-		head = pItem;
-		end = pItem;
+		studentNode* pItem = new studentNode;
+		//char c;
+		string name, id, cl, username, password, birthday;
+		getline(f, name, ',');
+		//cin >> c;
+		getline(f, id, ',');
+
+		getline(f, cl, ',');
+		//cin >> c;
+		getline(f, username, ',');
+		//cin >> c;
+		getline(f, password, ',');
+		//cin >> c;
+		getline(f, birthday, '\n');
+
+		Class* pClass = findClass(cl, 1);
+
+		pItem->name = name;
+		pItem->id = id;
+		pItem->classname = cl;
+		pItem->username = username;
+		pItem->password = password;
+		pItem->birthday = stoi(birthday);
+		addStudentNode(pClass, pItem);
+
+		//f.ignore();
+	}
+	f.close();
+}
+
+void updateStaff(string filename)
+{
+	ifstream f;
+	f.open(filename);
+	string role;
+	getline(f, role, '\n');
+	while (!f.eof())
+	{
+		staffNode* pItem = new staffNode;
+		//char c;
+		string name, id, username, password, birthday;
+		getline(f, name, ',');
+		//cin >> c;
+		getline(f, id, ',');
+		//cin >> c;
+		getline(f, username, ',');
+		//cin >> c;
+		getline(f, password, ',');
+		//cin >> c;
+		getline(f, birthday, '\n');
+
+		pItem->name = name;
+		pItem->id = id;
+		pItem->username = username;
+		pItem->password = password;
+		pItem->birthday = stoi(birthday);
+		addStaffNode(pItem);
+	}
+	f.close();
+}
+
+void addClassNode(string classname)
+{
+	Class* pItem = new Class;
+	pItem->name = classname;
+	pItem->headStudent = nullptr;
+	pItem->endStudent = nullptr;
+	pItem->pNext = nullptr;
+	pItem->pPrev = endClass;
+	if (!headClass)
+	{
+		headClass = pItem;
+		endClass = pItem;
 		return;
 	}
-	end->pNext = pItem;
-	end = end->pNext;
+	endClass->pNext = pItem;
+	endClass = endClass->pNext;
+}
+
+void addStudentNode(Class*& pClass, studentNode* pItem)
+{
+	pItem->pNext = nullptr;
+	pItem->pPrev = pClass->endStudent;
+	if (!pClass->headStudent)
+	{
+		pClass->headStudent = pItem;
+		pClass->endStudent = pItem;
+		return;
+	}
+	pClass->endStudent->pNext = pItem;
+	pClass->endStudent = pClass->endStudent->pNext;
+}
+
+void addStaffNode(staffNode* pItem)
+{
+	pItem->pNext = nullptr;
+	pItem->pPrev = endStaff;
+	if (!headStaff)
+	{
+		headStaff = pItem;
+		endStaff = pItem;
+		return;
+	}
+	endStaff->pNext = pItem;
+	endStaff = endStaff->pNext;
 }
 
 bool addFromCSV(string filename)
@@ -44,57 +147,71 @@ bool addFromCSV(string filename)
 	f.open(filename);
 	string role;
 	getline(f, role, '\n');
-	getline(f, role, ',');
-	if (role == "student") {
-		studentNode* pItem = new studentNode;
+	while (!f.eof())
+	{
+		f.ignore();
+		getline(f, role, ',');
+		cout << role;
+		if (role == "student") {
+			studentNode* pItem = new studentNode;
 
-		//char c;
-		string name, id, username, password, birthday;
-		getline(f, name, ',');
-		//cin >> c;
-		getline(f, id, ',');
-		//cin >> c;
-		getline(f, username, ',');
-		//cin >> c;
-		getline(f, password, ',');
-		//cin >> c;
-		getline(f, birthday, '\n');
+			//char c;
+			string name, id, cl, username, password, birthday;
+			getline(f, name, ',');
+			//cin >> c;
+			getline(f, id, ',');
 
-		pItem->name = name;
-		pItem->id = id;
-		pItem->username = username;
-		pItem->password = password;
-		pItem->birthday = stoi(birthday);
-		pItem->pNext = nullptr;
-		addStudentNode(headStudent, endStudent, pItem);
-		addDataToStudentCsvFile(pItem);
-	}
-	else if (role == "staff") {
-		staffNode* pItem = new staffNode;
+			getline(f, cl, ',');
+			//cin >> c;
+			getline(f, username, ',');
+			//cin >> c;
+			getline(f, password, ',');
+			//cin >> c;
+			getline(f, birthday, '\n');
 
-		//char c;
-		string name, id, username, password, birthday;
-		getline(f, name, ',');
-		//cin >> c;
-		getline(f, id, ',');
-		//cin >> c;
-		getline(f, username, ',');
-		//cin >> c;
-		getline(f, password, ',');
-		//cin >> c;
-		getline(f, birthday, '\n');
+			pItem->name = name;
+			pItem->id = id;
+			pItem->classname = cl;
+			pItem->username = username;
+			pItem->password = password;
+			pItem->birthday = stoi(birthday);
+			pItem->pNext = nullptr;
 
-		pItem->name = name;
-		pItem->id = id;
-		pItem->username = username;
-		pItem->password = password;
-		pItem->birthday = stoi(birthday);
-		pItem->pNext = nullptr;
-		addStaffNode(headStaff, endStaff, pItem);
-		addDataToStaffCsvFile(pItem);
-	}
-	else {
-		return false;
+			Class* pClass = findClass(cl, 0);
+
+			if (!pClass) return false;
+
+			addStudentNode(pClass, pItem);
+			addDataToStudentCsvFile(pItem);
+		}
+		else if (role == "staff") {
+			staffNode* pItem = new staffNode;
+
+			//char c;
+			string name, id, username, password, birthday;
+			getline(f, name, ',');
+			//cin >> c;
+			getline(f, id, ',');
+			//cin >> c;
+			getline(f, username, ',');
+			//cin >> c;
+			getline(f, password, ',');
+			//cin >> c;
+			getline(f, birthday, '\n');
+
+			pItem->name = name;
+			pItem->id = id;
+			pItem->username = username;
+			pItem->password = password;
+			pItem->birthday = stoi(birthday);
+			pItem->pNext = nullptr;
+			addStaffNode(pItem);
+			addDataToStaffCsvFile(pItem);
+		}
+		else {
+			f.close();
+			return false;
+		}
 	}
 	f.close();
 	return true;
@@ -104,33 +221,35 @@ void addDataToStaffCsvFile(staffNode* pItem)
 {
 	ofstream fout;
 	fout.open("STAFF.csv", ios::app);
-	fout << pItem->name << "," << pItem->id << "," << pItem->username << "," << pItem->password << "," << pItem->birthday;
+	fout << '\n' << pItem->name << "," << pItem->id << "," << pItem->username << "," << pItem->password << "," << pItem->birthday;
 	fout.close();
 }
 
 void addDataToStudentCsvFile(studentNode* pItem) {
 	ofstream fout;
 	fout.open("STUDENT.csv", ios::app);
-	fout << pItem->name << "," << pItem->id << "," << pItem->username << "," << pItem->password << "," << pItem->birthday;
+	fout << '\n' << pItem->name << "," << pItem->id << "," << pItem->classname << "," << pItem->username << "," << pItem->password << "," << pItem->birthday;
 	fout.close();
 }
 
 
-void addFromKeyb(string name, string id, string username, string password, string birthday, string role)
+void addFromKeyb(string name, string id, string cl, string username, string password, string birthday, string role, studentNode*& headStudent, studentNode*& endStudent)
 {
 	if (role == "student")
 	{
 		studentNode* pItemT = new studentNode;
 		pItemT->name = name;
 		pItemT->id = id;
+		pItemT->classname = cl;
 		pItemT->username = username;
 		pItemT->password = password;
 		pItemT->birthday = stoi(birthday);
 		pItemT->pNext = nullptr;
-		addStudentNode(headStudent, endStudent, pItemT);
+		Class* pClass = findClass(cl, 0);
+		addStudentNode(pClass, pItemT);
 		addDataToStudentCsvFile(pItemT);
 	}
-	else
+	else if (role == "staff")
 	{
 		staffNode* pItemF = new staffNode;
 		pItemF->name = name;
@@ -139,11 +258,32 @@ void addFromKeyb(string name, string id, string username, string password, strin
 		pItemF->password = password;
 		pItemF->birthday = stoi(birthday);
 		pItemF->pNext = nullptr;
-		addStaffNode(headStaff, endStaff, pItemF);
+		addStaffNode(pItemF);
 		addDataToStaffCsvFile(pItemF);
 	}
 }
-bool checkLogin(string username, string password)
+
+void displayClassList()
+{
+	Class* pClass = headClass;
+	while (pClass)
+	{
+		cout << pClass->name << endl;
+		pClass = pClass->pNext;
+	}
+}
+
+void displayStudentList(Class* pClass)
+{
+	studentNode* pStudent = pClass->headStudent;
+	while (pStudent)
+	{
+		cout << pStudent->name << endl;
+		pStudent = pStudent->pNext;
+	}
+}
+
+bool checkLogin(string username, string password, studentNode*& headStudent, studentNode*& endStudent)
 {
 	if (username[0] == 'F')
 	{
@@ -172,6 +312,36 @@ bool checkLogin(string username, string password)
 		}
 	}
 	return false;
+}
+
+void cleanUpClass()
+{
+	Class* pClass = headClass;
+	while (pClass)
+	{
+		studentNode* pCur = pClass->headStudent;
+		while (pCur)
+		{
+			if (!pClass->headStudent) break;
+			pClass->headStudent = pClass->headStudent->pNext;
+			delete pCur;
+			pCur = pClass->headStudent;
+		}
+		headClass = headClass->pNext;
+		delete pClass;
+		pClass = headClass;
+	}
+}
+
+void cleanUpStaff()
+{
+	staffNode* pStaff = headStaff;
+	while (pStaff)
+	{
+		headStaff = headStaff->pNext;
+		delete pStaff;
+		pStaff = headStaff;
+	}
 }
 
 
