@@ -113,17 +113,25 @@ void drawRec2(long x, long y, long posX, long posY)
 	setTextColor(8);
 }
 
-void avatar(bool i, short posX, short posY)
+void avatar(bool i, long length, short posX, short posY)
 {
 	if (i == 1)
 	{
-		drawRec(1, 1, posX, posY);
+		drawRec(length, length, posX, posY);
 	}
 	else
 	{
-		drawRec2(1, 1, posX, posY);
+		drawRec2(length, length, posX, posY);
 	}
-	gotoxy(posX + 2, posY + 1); setTextColor(random(15) * 16); cout << ' ';
+	setTextColor(random(15) * 16);
+	for (long k = posX + 2; k <= posX + (length * 4 + 1) - 3; k++)
+	{
+		for (long e = posY + 1; e <= posY + length; e++)
+		{
+			gotoxy(k, e);  cout << ' ';
+		}
+	}
+	
 	setTextColor(8);
 }
 

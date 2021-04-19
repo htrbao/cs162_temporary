@@ -1,4 +1,5 @@
 #ifndef _STUDENTINTERFACE_H_
+
 #define _STUDENTINTERFACE_H_
 
 #include "handling.h"
@@ -6,8 +7,14 @@
 
 void initialStudentBackground(studentNode* pItem);
 
+void clearStudentScreen();
 
-#endif
+void viewStudentProfile(studentNode* pItem);
 
+void changeStudentPassword(studentNode*& pItem);
 
+void aboutStudentProfile(studentNode*& pItem, bool& isLogOut);
 
+void studentMenu(studentNode*& pItem);
+
+#endif // !_STUDENTINTERFACE_H_

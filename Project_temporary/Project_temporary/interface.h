@@ -26,7 +26,7 @@ void drawRec(long x, long y, long posX, long posY);
 
 void drawRec2(long x, long y, long posX, long posY);
 
-void avatar(bool i, short posX, short posY); // draw avatar randomly at position[X, Y]
+void avatar(bool i, long length, short posX, short posY); // draw avatar randomly at position[X, Y]
 
 void setTextColor(long color);
 

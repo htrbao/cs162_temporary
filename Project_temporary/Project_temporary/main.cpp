@@ -7,7 +7,7 @@ HANDLE wHnd;
 HANDLE rHnd;
 
 int main()
-{	
+{
 	//setting all
 	wHnd = GetStdHandle(STD_OUTPUT_HANDLE);
 	rHnd = GetStdHandle(STD_INPUT_HANDLE);
@@ -19,13 +19,14 @@ int main()
 	updateStaff("STAFF.csv");
 	//end
 	//displayStudentList(findClass("20CTT2", 0));
+
 	studentNode* a = new studentNode;
-	a->name = "Nhan";
-	initialStudentBackground(a);
-	
-	
+	a->name = "NHÂN";
+
+	studentMenu(a);
+
 	cleanUpClass();
 	cleanUpStaff();
-	
+
 	return 0;
 }
