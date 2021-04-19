@@ -24,21 +24,6 @@ void clearSettingScreen()
 	}
 }
 
-void printSettingBox(roll* setting, long n)
-{
-	HANDLE hStdout = GetStdHandle(STD_OUTPUT_HANDLE);
-
-	for (long i = 0; i < n; i++)
-	{
-		SetConsoleTextAttribute(hStdout, 7);
-		gotoxy(setting[i].x, setting[i].y);
-		cout << "               ";
-
-		SetConsoleTextAttribute(hStdout, setting[i].color);
-		gotoxy(setting[i].x, setting[i].y);
-		cout << setting[i].message;
-	}
-}
 
 void initialStaffBackground(staffNode* pItem)
 {

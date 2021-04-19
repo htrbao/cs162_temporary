@@ -19,8 +19,11 @@ int main()
 	updateStaff("STAFF.csv");
 	//end
 	//displayStudentList(findClass("20CTT2", 0));
-	staffMenu(headStaff);
-
+	studentNode* a = new studentNode;
+	a->name = "Nhan";
+	initialStudentBackground(a);
+	
+	
 	cleanUpClass();
 	cleanUpStaff();
 	

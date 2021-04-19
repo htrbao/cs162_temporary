@@ -1,5 +1,4 @@
 #ifndef _STAFFINTERFACE_H_
-
 #define _STAFFINTERFACE_H_
 
 #include "handling.h"

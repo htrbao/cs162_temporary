@@ -37,6 +37,7 @@ struct staffNode {
 
 extern Class* headClass,* endClass;
 extern staffNode* headStaff, * endStaff;
+extern studentNode* headStudent, * endStudent;
 
 long random(long n);
 Class* findClass(string classname, bool doAdd);

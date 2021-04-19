@@ -34,4 +34,9 @@ void showInput(bool show, HANDLE hStdin, DWORD mode);
 
 void welcome();
 
+void warning(string warningText, long x, long y, long posX, long posY);
+
+void printSettingBox(roll* setting, long n);
+
+
 #endif // !_INTERFACE_H_
