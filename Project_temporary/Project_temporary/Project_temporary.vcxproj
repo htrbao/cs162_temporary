@@ -143,11 +143,13 @@
     <ClCompile Include="interface.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="staffInterface.cpp" />
+    <ClCompile Include="studentInterface.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="handling.h" />
     <ClInclude Include="interface.h" />
     <ClInclude Include="staffInterface.h" />
+    <ClInclude Include="studentInterface.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

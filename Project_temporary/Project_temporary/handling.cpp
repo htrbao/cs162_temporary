@@ -188,7 +188,6 @@ bool addFromCSV(string filename)
 			if (!pClass) return false;
 
 			addStudentNode(pClass, pItem);
-			addDataToStudentCsvFile(pItem);
 		}
 		else if (role == "staff") {
 			staffNode* pItem = new staffNode;
@@ -212,7 +211,6 @@ bool addFromCSV(string filename)
 			pItem->birthday = stoi(birthday);
 			pItem->pNext = nullptr;
 			addStaffNode(pItem);
-			addDataToStaffCsvFile(pItem);
 		}
 		else {
 			f.close();
@@ -253,7 +251,6 @@ void addFromKeyb(string name, string id, string cl, string username, string pass
 		pItemT->pNext = nullptr;
 		Class* pClass = findClass(cl, 0);
 		addStudentNode(pClass, pItemT);
-		addDataToStudentCsvFile(pItemT);
 	}
 	else if (role == "staff")
 	{
@@ -265,7 +262,6 @@ void addFromKeyb(string name, string id, string cl, string username, string pass
 		pItemF->birthday = stoi(birthday);
 		pItemF->pNext = nullptr;
 		addStaffNode(pItemF);
-		addDataToStaffCsvFile(pItemF);
 	}
 }
 

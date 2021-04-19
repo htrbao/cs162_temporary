@@ -19,7 +19,8 @@ int main()
 	updateStaff("STAFF.csv");
 	//end
 	//displayStudentList(findClass("20CTT2", 0));
-	staffMenu(headStaff);
+	
+	initialStudentBackground(headClass->headStudent);
 
 	cleanUpClass();
 	cleanUpStaff();

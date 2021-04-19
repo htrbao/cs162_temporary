@@ -9,10 +9,14 @@ void clearStaffScreen();
 
 void clearSettingScreen();
 
-void aboutProfile(staffNode* pItem);
+void viewProfile(staffNode* pItem);
+
+void changePassword(staffNode*& pItem);
+
+void aboutProfile(staffNode*& pItem, bool& isLogOut);
 
 void initialStaffBackground(staffNode* pItem);
 
-void staffMenu(staffNode* pItem);
+void staffMenu(staffNode*& pItem);
 
 #endif // !_STAFFINTERFACE_H_

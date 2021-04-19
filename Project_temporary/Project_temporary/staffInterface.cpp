@@ -42,7 +42,7 @@ void printSettingBox(roll* setting, long n)
 
 void initialStaffBackground(staffNode* pItem)
 {
-	avatar(2, 162, 1);
+	avatar(0, 1 ,162, 1);
 	setTextColor(7);
 	gotoxy(167, 2); cout << pItem->name;
 
@@ -58,7 +58,17 @@ void initialStaffBackground(staffNode* pItem)
 	}
 }
 
-void aboutProfile(staffNode* pItem)
+void viewProfile(staffNode* pItem)
+{
+
+}
+
+void changePassword(staffNode*& pItem)
+{
+
+}
+
+void aboutProfile(staffNode*& pItem, bool& isLogOut)
 {
 	long numberSetting = 3, cnt = 0;
 	roll* set = new roll[10];
@@ -91,6 +101,20 @@ void aboutProfile(staffNode* pItem)
 			break;
 		}
 
+		if (c == char(13))
+		{
+			if (cnt == 0) {
+				viewProfile(pItem);
+			}
+			if (cnt == 1) {
+				changePassword(pItem);
+			}
+			if (cnt == 2) {
+				isLogOut = true;
+				break;
+			}
+		}
+
 		if (cnt < 0) cnt = numberSetting - 1;
 		if (cnt == numberSetting) cnt = 0;
 
@@ -109,10 +133,11 @@ void aboutProfile(staffNode* pItem)
 	delete[] set;
 }
 
-void staffMenu(staffNode* pItem)
+void staffMenu(staffNode*& pItem)
 {
 	ShowCur(0);
 	long numberSetting = 4;
+	bool isLogOut = false;
 
 	roll* setting;
 	setting = new roll[10];
@@ -145,7 +170,8 @@ void staffMenu(staffNode* pItem)
 		
 		if (c == char(13) || c == char(80)) {
 			if (cnt == 3) {
-				aboutProfile(pItem);
+				aboutProfile(pItem, isLogOut);
+				if(isLogOut) break;
 			}
 		}
 
