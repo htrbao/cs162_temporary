@@ -162,7 +162,7 @@ void welcome()
 	cout << endl;
 	cout << "                                      	                               &&&&&&&&7                       $&&&&&$\n";
 	cout << "                                                                         &&&&&&&&&c                   &&&&&&&$\n";
-	cout << "                                                                          @&&&&&$&&&&                ¢&&&&&&&$\n";
+	cout << "                                                                          @&&&&&$&&&&                Â¢&&&&&&&$\n";
 	cout << "                                                                           &&&&&&&&&&&&             &&&&&&&&@\n";
 	cout << "                                                                             &&&&&&&&&&&&c         &&&&&&&&&&\n";
 	cout << "                                                                               &&&&&&&&&&&&       &&&&&&&&&\n";
@@ -243,4 +243,41 @@ void printSettingBox(roll* setting, long n)
 		gotoxy(setting[i].x, setting[i].y);
 		cout << setting[i].message;
 	}
+}
+
+void DisableResizeWindow()
+{
+	 HWND hWnd = GetConsoleWindow();
+	SetWindowLong(hWnd, GWL_STYLE, GetWindowLong(hWnd, GWL_STYLE) & ~WS_SIZEBOX);
+}
+
+void ShowScrollbar(BOOL Show)
+{
+	HWND hWnd = GetConsoleWindow();
+	ShowScrollBar(hWnd, SB_BOTH, Show);
+}
+
+void setScreenSize(SHORT x, SHORT y, SHORT width, SHORT height)
+{
+	HWND consoleWindow = GetConsoleWindow();
+	MoveWindow(GetConsoleWindow(), x, y, width, height, TRUE);
+}
+
+void setColor(int color)
+{
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), color);
+}
+int inputKey()
+{
+
+	int key = _getch();
+
+	if (key == 224)
+	{
+		key = _getch();
+		return key;
+	}
+
+	return key;
+
 }
