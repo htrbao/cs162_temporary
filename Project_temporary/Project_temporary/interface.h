@@ -37,6 +37,11 @@ void welcome();
 void warning(string warningText, long x, long y, long posX, long posY);
 
 void printSettingBox(roll* setting, long n);
+void DisableResizeWindow();
+void ShowScrollbar(BOOL Show);
 
+void setScreenSize(SHORT x, SHORT y, SHORT width, SHORT height);
+void setColor(int color);
+int inputKey();
 
 #endif // !_INTERFACE_H_
