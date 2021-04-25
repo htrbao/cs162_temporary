@@ -20,10 +20,7 @@ int main()
 	//end
 	//displayStudentList(findClass("20CTT2", 0));
 
-	studentNode* a = new studentNode;
-	a->name = "NHÂN";
-
-	studentMenu(a);
+	staffMenu(headStaff);
 
 	cleanUpClass();
 	cleanUpStaff();

@@ -129,7 +129,7 @@ void staffMenu(staffNode*& pItem)
 
 	setting[0].message = "CREAT NEW CLASS";
 	setting[1].message = "ADD NEW STUDENT";
-	setting[2].message = "STUDENT";
+	setting[2].message = "VIEW STUDENT";
 	setting[3].message = "...";
 
 	for (long i = 0; i < numberSetting; i++)
@@ -171,5 +171,6 @@ void staffMenu(staffNode*& pItem)
 		if (cnt == numberSetting - 1) setting[cnt].color = 100;
 		printSettingBox(setting, numberSetting);
 	}
+	system("cls");
 	delete[] setting;
 }
