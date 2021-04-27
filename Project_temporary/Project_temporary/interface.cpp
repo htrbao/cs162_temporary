@@ -140,20 +140,63 @@ void showInput(bool show, HANDLE hStdin, DWORD mode)
 	}
 }
 
-void clrscr()
+//warning(a, 9, 20, 59, 19);
+void warning(string warningText, long x, long y, long posX, long posY) {
+
+	x = x + 2;
+	y = y * 4 + 1;
+	gotoxy(posX, posY);
+	for (long i = 1; i <= y; i++)
+	{
+		if (i == 1) cout << char(201);
+		else if (i == y) cout << char(187);
+		else cout << char(205);
+	}
+
+	for (long i = 2; i <= x; i++)
+	{
+		posY++;
+		gotoxy(posX, posY);
+		for (long j = 1; j <= y; j++)
+		{
+			if (j == 1 || j == y) cout << char(186);
+			else if (i >= 2 && i <= 7 && j <= 6 && j >= 3) cout << char(219);
+			else if ((i == 2 && j == 7) || (i == 9 && j == 7)) cout << char(187);
+			else if ((i > 2 && i <= 7 && j == 7) || (i == 10 && j == 7)) cout << char(186);
+			else if ((i == 8 && j == 7) || (i == 11 && j == 7)) cout << char(188);
+			else if ((i == 8 && j > 4 && j < 7) || (i == 11 && j > 4 && j < 7)) cout << char(205);
+			else if ((i == 8 && j == 4) || (i == 11 && j == 4)) cout << char(200);
+			else if (i > 8 && i <= x - 1 && j <= 6 && j >= 3) cout << char(219);
+
+			else cout << ' ';
+		}
+	}
+	gotoxy(posX + 38, posY - 4);
+	cout << warningText;
+	posY++;
+	gotoxy(posX, posY);
+	for (long i = 1; i <= y; i++)
+	{
+		if (i == 1) cout << char(200);
+		else if (i == y) cout << char(188);
+		else cout << char(205);
+	}
+}
+
+void printSettingBox(roll* setting, long n)
 {
-	COORD origin = { 0, 0 };
-	unsigned long len;
-	CONSOLE_SCREEN_BUFFER_INFO csbi;
-	unsigned long size;
-	void* handle = GetStdHandle(STD_OUTPUT_HANDLE);
+	HANDLE hStdout = GetStdHandle(STD_OUTPUT_HANDLE);
 
+	for (long i = 0; i < n; i++)
+	{
+		SetConsoleTextAttribute(hStdout, 7);
+		gotoxy(setting[i].x, setting[i].y);
+		cout << "               ";
 
-	GetConsoleScreenBufferInfo(handle, &csbi);
-	size = csbi.dwSize.X * csbi.dwSize.Y;
-	FillConsoleOutputCharacter(handle, TEXT(' '), size, origin, &len);
-	FillConsoleOutputAttribute(handle, csbi.wAttributes, size, origin, &len);
-	SetConsoleCursorPosition(handle, origin);
+		SetConsoleTextAttribute(hStdout, setting[i].color);
+		gotoxy(setting[i].x, setting[i].y);
+		cout << setting[i].message;
+	}
 }
 
 void wait(int seconds)
@@ -169,12 +212,6 @@ void wait(int seconds)
 #include <conio.h>
 using namespace std;
 
-void wait(int seconds)
-{
-	clock_t ew;
-	ew = clock() + seconds * CLOCKS_PER_SEC;
-	while (clock() < ew) {}
-}
 void clrscr()
 {
 	COORD origin = { 0, 0 };
