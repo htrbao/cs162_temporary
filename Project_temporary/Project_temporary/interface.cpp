@@ -111,7 +111,7 @@ void drawRec2(long x, long y, long posX, long posY)
 	}
 }
 
-void avatar(bool i, short posX, short posY)
+void avatar(bool i,long length, short posX, short posY)
 {
 	if (i == 1)
 	{
@@ -602,4 +602,41 @@ void welcome()
 	gotoxy(17, 28);
 	cout << "     \\ |";
 	wait(1);
+}
+
+void DisableResizeWindow()
+{
+	HWND hWnd = GetConsoleWindow();
+	SetWindowLong(hWnd, GWL_STYLE, GetWindowLong(hWnd, GWL_STYLE) & ~WS_SIZEBOX);
+}
+
+void ShowScrollbar(BOOL Show)
+{
+	HWND hWnd = GetConsoleWindow();
+	ShowScrollBar(hWnd, SB_BOTH, Show);
+}
+
+void setScreenSize(SHORT x, SHORT y, SHORT width, SHORT height)
+{
+	HWND consoleWindow = GetConsoleWindow();
+	MoveWindow(GetConsoleWindow(), x, y, width, height, TRUE);
+}
+
+void setColor(int color)
+{
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), color);
+}
+int inputKey()
+{
+
+	int key = _getch();
+
+	if (key == 224)
+	{
+		key = _getch();
+		return key;
+	}
+
+	return key;
+
 }

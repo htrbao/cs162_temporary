@@ -2,6 +2,7 @@
 #include "interface.h"
 #include "staffInterface.h"
 #include "studentInterface.h"
+#include"login.h"
 
 HANDLE wHnd;
 HANDLE rHnd;
@@ -20,7 +21,7 @@ int main()
 	//end
 	//displayStudentList(findClass("20CTT2", 0));
 
-	staffMenu(headStaff);
+	loginScreen();
 
 	cleanUpClass();
 	cleanUpStaff();
