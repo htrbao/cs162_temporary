@@ -115,11 +115,19 @@ void avatar(bool i, short posX, short posY)
 {
 	if (i == 1)
 	{
-		drawRec(1, 1, posX, posY);
+		drawRec(length, length - (length == 1 ? 0 : 1), posX, posY);
 	}
 	else
 	{
-		drawRec2(1, 1, posX, posY);
+		drawRec2(length, length - (length == 1 ? 0 : 1), posX, posY);
+	}
+	setTextColor(random(15) * 16);
+	for (long k = posX + 2; k <= posX + (length * 4 + 1) - 3; k++)
+	{
+		for (long e = posY + 1; e <= posY + length; e++)
+		{
+			gotoxy(k, e);  cout << ' ';
+		}
 	}
 }
 
@@ -129,13 +137,10 @@ void showInput(bool show, HANDLE hStdin, DWORD mode)
 
 	if (show)
 	{
-
-
 		SetConsoleMode(hStdin, mode & (~ENABLE_INSERT_MODE));
 	}
 	else
 	{
-
 		SetConsoleMode(hStdin, mode & (~ENABLE_ECHO_INPUT));
 	}
 }
@@ -247,7 +252,7 @@ void welcome()
 	setTextColor(0);
 	cout << "  	                            &&&&&&&&7                       $&&&&&$\n";
 	cout << "                                    &&&&&&&&&c                   &&&&&&&$\n";
-	cout << "                                     @&&&&&$&&&&                ¢&&&&&&&$\n";
+	cout << "                                     @&&&&&$&&&&                ï¿½&&&&&&&$\n";
 	cout << "                                      &&&&&&&&&&&&             &&&&&&&&@\n";
 	cout << "                                        &&&&&&&&&&&&c         &&&&&&&&&&\n";
 	cout << "                                          &&&&&&&&&&&&       &&&&&&&&&\n";
@@ -373,7 +378,7 @@ void welcome()
 	setTextColor(0);
 	cout << "  	                            &&&&&&&&7                       $&&&&&$\n";
 	cout << "                                    &&&&&&&&&c                   &&&&&&&$\n";
-	cout << "                                     @&&&&&$&&&&                ¢&&&&&&&$\n";
+	cout << "                                     @&&&&&$&&&&                ï¿½&&&&&&&$\n";
 	cout << "                                      &&&&&&&&&&&&             &&&&&&&&@\n";
 	cout << "                                        &&&&&&&&&&&&c         &&&&&&&&&&\n";
 	cout << "                                          &&&&&&&&&&&&       &&&&&&&&&\n";
@@ -491,7 +496,7 @@ void welcome()
 	setTextColor(0);
 	cout << "  	                            &&&&&&&&7                       $&&&&&$\n";
 	cout << "                                    &&&&&&&&&c                   &&&&&&&$\n";
-	cout << "                                     @&&&&&$&&&&                ¢&&&&&&&$\n";
+	cout << "                                     @&&&&&$&&&&                ï¿½&&&&&&&$\n";
 	cout << "                                      &&&&&&&&&&&&             &&&&&&&&@\n";
 	cout << "                                        &&&&&&&&&&&&c         &&&&&&&&&&\n";
 	cout << "                                          &&&&&&&&&&&&       &&&&&&&&&\n";
