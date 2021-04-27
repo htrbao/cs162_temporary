@@ -4,7 +4,7 @@ void clearStaffScreen()
 {
 	for (long i = 0; i <= 159; i++)
 	{
-		for (long j = 9; j <= 40; j++)
+		for (long j = 7; j <= 40; j++)
 		{
 			gotoxy(i, j);
 			cout << ' ';
@@ -45,7 +45,16 @@ void initialStaffBackground(staffNode* pItem)
 
 void viewProfile(staffNode* pItem)
 {
+	avatar(0, 5, 2, 7);
+	setTextColor(11);
+	gotoxy(30, 7); cout << "Full name: " << pItem->name;
+	gotoxy(30, 9); cout << "User name: " << pItem->username;
+	gotoxy(30, 11); cout << "ID: " << pItem->id;
+	gotoxy(30, 13); cout << "Role: " << "Staff";
+	gotoxy(30, 15); cout << "Birthday: "; printBirthday(pItem->birthday);
 
+	setTextColor(7);
+	if(_getch())clearStaffScreen();
 }
 
 void changePassword(staffNode*& pItem)

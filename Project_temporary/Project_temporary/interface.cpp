@@ -117,11 +117,11 @@ void avatar(bool i, long length, short posX, short posY)
 {
 	if (i == 1)
 	{
-		drawRec(length, length, posX, posY);
+		drawRec(length, length - (length == 1 ? 0 : 1), posX, posY);
 	}
 	else
 	{
-		drawRec2(length, length, posX, posY);
+		drawRec2(length, length - (length == 1 ? 0 : 1), posX, posY);
 	}
 	setTextColor(random(15) * 16);
 	for (long k = posX + 2; k <= posX + (length * 4 + 1) - 3; k++)
@@ -141,13 +141,10 @@ void showInput(bool show, HANDLE hStdin, DWORD mode)
 
 	if (show)
 	{
-
-
 		SetConsoleMode(hStdin, mode & (~ENABLE_INSERT_MODE));
 	}
 	else
 	{
-
 		SetConsoleMode(hStdin, mode & (~ENABLE_ECHO_INPUT));
 	}
 }
