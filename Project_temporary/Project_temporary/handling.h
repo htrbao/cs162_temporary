@@ -55,5 +55,6 @@ void displayClassList();
 void displayStudentList(Class* pClass);
 bool checkLogin(string username, string password, studentNode*& headStudent, studentNode*& endStudent);
 void cleanUpClass();
+bool checkk(string username, string password);
 void cleanUpStaff();
 #endif // !_HANDLING_H_

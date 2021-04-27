@@ -285,6 +285,19 @@ void displayStudentList(Class* pClass)
 	}
 }
 
+
+bool checkk(string username, string password)
+{
+	bool temp = false;
+	Class* curClass = headClass;
+	while (curClass && !temp)
+	{
+		temp = checkLogin(username, password, curClass->headStudent, curClass->endStudent);
+		curClass = curClass->pNext;
+	}
+	return temp;
+}
+
 bool checkLogin(string username, string password, studentNode*& headStudent, studentNode*& endStudent)
 {
 	if (username[0] == 'F')
@@ -294,7 +307,7 @@ bool checkLogin(string username, string password, studentNode*& headStudent, stu
 		{
 			if (!temp->username.compare(username) && !temp->password.compare(password))
 			{
-				cout << "staff" << endl; //chinh sua sau
+				//invoke staffInterface funtion here with temp as a argument
 				return true;
 			}
 			temp = temp->pNext;
@@ -307,7 +320,7 @@ bool checkLogin(string username, string password, studentNode*& headStudent, stu
 		{
 			if (!temp->username.compare(username) && !temp->password.compare(password))
 			{
-				cout << "student" << endl;
+				//invoke studentInterface funtion here with temp as a argument
 				return true;
 			}
 			temp = temp->pNext;

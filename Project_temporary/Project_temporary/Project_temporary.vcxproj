@@ -141,6 +141,7 @@
   <ItemGroup>
     <ClCompile Include="handling.cpp" />
     <ClCompile Include="interface.cpp" />
+    <ClCompile Include="login.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="staffInterface.cpp" />
     <ClCompile Include="studentInterface.cpp" />
@@ -148,8 +149,13 @@
   <ItemGroup>
     <ClInclude Include="handling.h" />
     <ClInclude Include="interface.h" />
+    <ClInclude Include="login.h" />
     <ClInclude Include="staffInterface.h" />
     <ClInclude Include="studentInterface.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="login.txt" />
+    <Text Include="moodle.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

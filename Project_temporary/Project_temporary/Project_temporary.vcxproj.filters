@@ -30,6 +30,9 @@
     <ClCompile Include="studentInterface.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="login.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="handling.h">
@@ -44,5 +47,12 @@
     <ClInclude Include="studentInterface.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="login.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="moodle.txt" />
+    <Text Include="login.txt" />
   </ItemGroup>
 </Project>
