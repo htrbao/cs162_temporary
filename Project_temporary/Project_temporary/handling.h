@@ -1,12 +1,12 @@
 #pragma once
 #ifndef _HANDLING_H_
-
-#define _HANGDLING_H_
+#define _HANDLING_H_
 
 #include <iostream>
 #include <string>
 #include <fstream>
 #include <ctime>
+
 
 using namespace std;
 
@@ -38,7 +38,7 @@ struct staffNode {
 extern Class* headClass,* endClass;
 extern staffNode* headStaff, * endStaff;
 extern studentNode* headStudent, * endStudent;
-
+#include "staffInterface.h"
 long random(long n);
 Class* findClass(string classname, bool doAdd);
 void updateStudent(string filename);

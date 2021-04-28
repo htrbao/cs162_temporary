@@ -308,6 +308,7 @@ bool checkLogin(string username, string password, studentNode*& headStudent, stu
 			if (!temp->username.compare(username) && !temp->password.compare(password))
 			{
 				//invoke staffInterface funtion here with temp as a argument
+				staffMenu(temp);
 				return true;
 			}
 			temp = temp->pNext;
