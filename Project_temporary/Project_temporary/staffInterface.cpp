@@ -127,8 +127,13 @@ void aboutProfile(staffNode*& pItem, bool& isLogOut)
 	delete[] set;
 }
 
+
+
 void staffMenu(staffNode*& pItem)
 {
+
+	//setScreenSize(30, 30, 1100, 1011);
+
 	ShowCur(0);
 	long numberSetting = 4;
 	bool isLogOut = false;

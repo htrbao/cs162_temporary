@@ -53,8 +53,8 @@ void addDataToStudentCsvFile(studentNode* pHead);
 void addFromKeyb(string name, string id, string cl, string username, string password, string birthday, string role, studentNode*& headStudent, studentNode*& endStudent);
 void displayClassList();
 void displayStudentList(Class* pClass);
-bool checkLogin(string username, string password, studentNode*& headStudent, studentNode*& endStudent);
+bool checkLogin(string username, string password, studentNode*& headStudent, studentNode*& endStudent, studentNode*& pSt, staffNode*& pStf);
 void cleanUpClass();
-bool checkk(string username, string password);
+bool checkk(string username, string password, studentNode*& pSt, staffNode*& pStf);
 void cleanUpStaff();
 #endif // !_HANDLING_H_

@@ -4,6 +4,6 @@
 #include "handling.h"
 #include "interface.h"
 
-void loginScreen();
+void loginScreen(studentNode*& pSt, staffNode*& pStf);
 void reLogin(string &username, string &password);
 #endif // !1

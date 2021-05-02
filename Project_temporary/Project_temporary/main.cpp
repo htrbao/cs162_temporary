@@ -2,7 +2,7 @@
 #include "interface.h"
 #include "staffInterface.h"
 #include "studentInterface.h"
-#include"login.h"
+#include "login.h"
 
 HANDLE wHnd;
 HANDLE rHnd;
@@ -10,6 +10,7 @@ HANDLE rHnd;
 int main()
 {
 	//setting all
+
 	wHnd = GetStdHandle(STD_OUTPUT_HANDLE);
 	rHnd = GetStdHandle(STD_INPUT_HANDLE);
 	SMALL_RECT windowSize = { 0, 0, 200, 40 };
@@ -18,10 +19,28 @@ int main()
 	SetConsoleWindowInfo(wHnd, TRUE, &windowSize);
 	updateStudent("STUDENT.csv");
 	updateStaff("STAFF.csv");
-	//end
-	//displayStudentList(findClass("20CTT2", 0));
+	//welcome();
 
-	loginScreen();
+	//end
+
+	while (1)
+	{
+		studentNode* pStudent = nullptr;
+		staffNode* pStaff = nullptr;
+		loginScreen(pStudent, pStaff);
+
+		if (pStudent) {
+			studentMenu(pStudent);
+		}
+		else if (headStaff) {
+			staffMenu(headStaff);
+		}
+		long n;
+		cin >> n;
+		if (n == 0) break;
+	}
+
+	//staffMenu(headStaff);
 
 	cleanUpClass();
 	cleanUpStaff();

@@ -1,11 +1,11 @@
 #include "login.h"
 
-void loginScreen()
+void loginScreen(studentNode*& pSt, staffNode*& pStf)
 {
+	system("cls");
 	setScreenSize(360, 120, 760, 580);
-	DisableCtrButton(0, 0, 1);
-	DisableResizeWindow();
-	ShowScrollbar(false);
+	//DisableResizeWindow();
+	//ShowScrollbar(false);
 	string username = "";
 	int length;
 	string password = "";
@@ -60,7 +60,7 @@ void loginScreen()
 
 	length = 0;
 	gotoxy(71, 17);
-	while ((inp = inputKey()) != 13)
+	while ((inp = inputKey()) != 13 && inp != 9)
 	{
 		if (inp != 8 && length < 20)
 		{
@@ -103,13 +103,12 @@ void loginScreen()
 			}
 	}
 	//cout << password;
-	while (!checkk(username, password))
+	while (!checkk(username, password, pSt, pStf))
 	{
 		reLogin(username, password);
 	}
 
 	gotoxy(0, 0);
-	cin >> input;
 	in.close();
 }
 
@@ -130,7 +129,7 @@ void reLogin(string &username, string &password)
 	setColor(7);
 	length = 0;
 	gotoxy(71, 17);
-	while ((inp = inputKey()) != 13)
+	while ((inp = inputKey()) != 13 && inp != 9)
 	{
 		if (inp != 8 && length < 20)
 		{

@@ -249,7 +249,7 @@ void welcome()
 	cout << "			    \\__/\\__/  |_____| |_____| \\_____/ \\_____/ |_|\\/|_| |_____| \n";
 	cout << "                             |###########33%                   |";
 	cout << endl;
-	setTextColor(0);
+	setTextColor(12);
 	cout << "  	                            &&&&&&&&7                       $&&&&&$\n";
 	cout << "                                    &&&&&&&&&c                   &&&&&&&$\n";
 	cout << "                                     @&&&&&$&&&&                �&&&&&&&$\n";
@@ -375,7 +375,7 @@ void welcome()
 	cout << "			    \\__/\\__/  |_____| |_____| \\_____/ \\_____/ |_|\\/|_| |_____| \n";
 	cout << "                             |######################66%        |";
 	cout << endl;
-	setTextColor(0);
+	setTextColor(12);
 	cout << "  	                            &&&&&&&&7                       $&&&&&$\n";
 	cout << "                                    &&&&&&&&&c                   &&&&&&&$\n";
 	cout << "                                     @&&&&&$&&&&                �&&&&&&&$\n";
@@ -493,7 +493,7 @@ void welcome()
 	cout << "			    \\__/\\__/  |_____| |_____| \\_____/ \\_____/ |_|\\/|_| |_____| \n";
 	cout << "                             |###############99,99%############|";
 	cout << endl;
-	setTextColor(0);
+	setTextColor(12);
 	cout << "  	                            &&&&&&&&7                       $&&&&&$\n";
 	cout << "                                    &&&&&&&&&c                   &&&&&&&$\n";
 	cout << "                                     @&&&&&$&&&&                �&&&&&&&$\n";
@@ -602,6 +602,8 @@ void welcome()
 	gotoxy(17, 28);
 	cout << "     \\ |";
 	wait(1);
+
+	setTextColor(7);
 }
 
 void DisableResizeWindow()
@@ -626,6 +628,7 @@ void setColor(int color)
 {
 	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), color);
 }
+
 int inputKey()
 {
 

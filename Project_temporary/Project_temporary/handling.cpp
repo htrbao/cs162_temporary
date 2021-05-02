@@ -286,19 +286,19 @@ void displayStudentList(Class* pClass)
 }
 
 
-bool checkk(string username, string password)
+bool checkk(string username, string password, studentNode*& pSt, staffNode*& pStf)
 {
 	bool temp = false;
 	Class* curClass = headClass;
 	while (curClass && !temp)
 	{
-		temp = checkLogin(username, password, curClass->headStudent, curClass->endStudent);
+		temp = checkLogin(username, password, curClass->headStudent, curClass->endStudent, pSt, pStf);
 		curClass = curClass->pNext;
 	}
 	return temp;
 }
 
-bool checkLogin(string username, string password, studentNode*& headStudent, studentNode*& endStudent)
+bool checkLogin(string username, string password, studentNode*& headStudent, studentNode*& endStudent, studentNode* &pSt, staffNode* &pStf)
 {
 	if (username[0] == 'F')
 	{
@@ -308,6 +308,8 @@ bool checkLogin(string username, string password, studentNode*& headStudent, stu
 			if (!temp->username.compare(username) && !temp->password.compare(password))
 			{
 				//invoke staffInterface funtion here with temp as a argument
+				pStf = temp;
+				pSt = nullptr;
 				return true;
 			}
 			temp = temp->pNext;
@@ -321,6 +323,8 @@ bool checkLogin(string username, string password, studentNode*& headStudent, stu
 			if (!temp->username.compare(username) && !temp->password.compare(password))
 			{
 				//invoke studentInterface funtion here with temp as a argument
+				pStf = nullptr;
+				pSt = temp;
 				return true;
 			}
 			temp = temp->pNext;
