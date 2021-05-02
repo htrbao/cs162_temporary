@@ -30,7 +30,7 @@ void initialStaffBackground(staffNode* pItem)
 	avatar(0, 1 ,162, 1);
 	setTextColor(7);
 	gotoxy(167, 2); cout << pItem->name;
-
+	setScreenSize(0, 0, 1471, 690);
 	gotoxy(0, 5);
 	for (long i = 0; i <= 199; i++)
 	{

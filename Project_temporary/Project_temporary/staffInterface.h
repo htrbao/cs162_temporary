@@ -1,3 +1,4 @@
+#pragma once
 #ifndef _STAFFINTERFACE_H_
 #define _STAFFINTERFACE_H_
 
