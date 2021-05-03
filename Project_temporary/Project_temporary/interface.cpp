@@ -251,7 +251,7 @@ void clear(int a, int b, int c, int d)
 		}
 	}
 }
-int main()
+int void()
 {
 	HWND hwnd = GetConsoleWindow();
 	if (hwnd != NULL) { SetWindowPos(hwnd, 0, 0, 0, 2000, 700, SWP_SHOWWINDOW | SWP_NOMOVE); }
