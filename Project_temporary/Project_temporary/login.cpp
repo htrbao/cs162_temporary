@@ -1,11 +1,13 @@
 #include "login.h"
 
 void loginScreen(studentNode*& pSt, staffNode*& pStf)
-{
+{	
 	system("cls");
+	setBackgroundColor(0);
 	setScreenSize(360, 120, 760, 580);
-	//DisableResizeWindow();
-	//ShowScrollbar(false);
+	DisableResizeWindow();
+	DisableCtrButton(0, 0, 1);
+	ShowScrollbar(false);
 	string username = "";
 	int length;
 	string password = "";

@@ -251,7 +251,7 @@ void clear(int a, int b, int c, int d)
 		}
 	}
 }
-int void()
+void welcome()
 {
 	HWND hwnd = GetConsoleWindow();
 	if (hwnd != NULL) { SetWindowPos(hwnd, 0, 0, 0, 2000, 700, SWP_SHOWWINDOW | SWP_NOMOVE); }
@@ -638,7 +638,7 @@ int void()
 		cout << "     \\ |";
 	}
 	wait(2);
-	return 0;
+	return;
 }
 
 void DisableResizeWindow()
@@ -677,4 +677,30 @@ int inputKey()
 
 	return key;
 
+}
+
+int getColor() {
+	CONSOLE_SCREEN_BUFFER_INFO info;
+	if (!GetConsoleScreenBufferInfo(GetStdHandle(STD_OUTPUT_HANDLE), &info))
+		return false;
+	SHORT ret = info.wAttributes;
+	return ret;
+}
+
+void setBackgroundColor(int BackC)
+{
+
+	WORD wColor = ((BackC & 0x0F) << 4) + (getColor() & 0x0F);
+	HANDLE hStdOut = GetStdHandle(STD_OUTPUT_HANDLE);
+	COORD coord = { 0, 0 };
+	DWORD count;
+	CONSOLE_SCREEN_BUFFER_INFO csbi;
+	SetConsoleTextAttribute(hStdOut, wColor);
+	if (GetConsoleScreenBufferInfo(hStdOut, &csbi))
+	{
+		FillConsoleOutputCharacter(hStdOut, (TCHAR)32, csbi.dwSize.X * csbi.dwSize.Y, coord, &count);
+		FillConsoleOutputAttribute(hStdOut, csbi.wAttributes, csbi.dwSize.X * csbi.dwSize.Y, coord, &count);
+		SetConsoleCursorPosition(hStdOut, coord);
+	}
+	return;
 }
