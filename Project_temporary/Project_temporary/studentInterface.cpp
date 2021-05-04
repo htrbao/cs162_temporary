@@ -147,6 +147,7 @@ void studentMenu(studentNode*& pItem)
 				aboutStudentProfile(pItem, isLogOut);
 				if (isLogOut) break;
 			}
+			
 		}
 
 		if (cnt < 0) cnt = numberSetting - 1;
