@@ -641,6 +641,110 @@ void welcome()
 	return;
 }
 
+void exit()
+{
+	setColor(11);
+	gotoxy(0, 0);
+	cout << char(201);
+	gotoxy(176, 0);
+	cout << char(187);
+	gotoxy(0, 39);
+	cout << char(200);
+	gotoxy(176, 39);
+	cout << char(188);
+	for (int i = 1; i < 176; i++)
+	{
+		gotoxy(i, 0);
+		cout << char(205);
+	}
+	for (int i = 1; i < 39; i++)
+	{
+		gotoxy(0, i);
+		cout << char(186);
+	}
+	for (int i = 1; i < 39; i++)
+	{
+		gotoxy(176, i);
+		cout << char(186);
+	}
+	for (int i = 1; i < 176; i++)
+	{
+		gotoxy(i, 39);
+		cout << char(205);
+	}
+
+	setColor(9);
+	gotoxy(58, 5);
+	cout << char(219) << char(219) << char(219) << char(219) << " " << char(219) << char(219) << " " << char(219) << char(219) << "  " << char(220) << char(219) << char(219) << char(219) << char(220) << "  " << char(219) << char(219) << char(220) << " " << char(219) << char(219) << " " << char(219) << char(219) << " " << char(220) << char(219) << char(219) << endl;
+	gotoxy(58, 6);
+	cout << " " << char(219) << char(219) << "  " << char(219) << char(219) << char(220) << char(219) << char(219) << " " << char(219) << char(219) << char(223) << " " << char(223) << char(219) << char(219) << " " << char(219) << char(219) << char(219) << char(220) << char(219) << char(219) << " " << char(219) << char(219) << char(219) << char(219) << char(223) << endl;
+	gotoxy(58, 7);
+	cout << " " << char(219) << char(219) << "  " << char(219) << char(219) << char(223) << char(219) << char(219) << " " << char(219) << char(219) << char(219) << char(219) << char(219) << char(219) << char(219) << " " << char(219) << char(219) << char(223) << char(219) << char(219) << char(219) << " " << char(219) << char(219) << char(219) << char(219) << char(220) << endl;
+	gotoxy(58, 8);
+	cout << " " << char(219) << char(219) << "  " << char(219) << char(219) << " " << char(219) << char(219) << " " << char(219) << char(219) << "   " << char(219) << char(219) << " " << char(219) << char(219) << "  " << char(219) << char(219) << " " << char(219) << char(219) << " " << char(223) << char(219) << char(219) << endl << endl;
+
+	gotoxy(95, 5);
+	cout << char(219) << char(219) << char(220) << "  " << char(220) << char(219) << char(219) << "  " << char(220) << char(219) << char(219) << char(219) << char(220) << "  " << char(219) << char(219) << "  " << char(219) << char(219) << endl;
+	gotoxy(95, 6);
+	cout << " " << char(223) << char(219) << char(219) << char(219) << char(219) << char(223) << "  " << char(219) << char(219) << char(223) << " " << char(223) << char(219) << char(219) << " " << char(219) << char(219) << "  " << char(219) << char(219) << endl;
+	gotoxy(95, 7);
+	cout << "   " << char(219) << char(219) << "    " << char(219) << char(219) << char(220) << " " << char(220) << char(219) << char(219) << " " << char(219) << char(219) << "  " << char(219) << char(219) << endl;
+	gotoxy(95, 8);
+	cout << "   " << char(219) << char(219) << "     " << char(223) << char(219) << char(219) << char(219) << char(223) << "  " << char(223) << char(219) << char(219) << char(219) << char(219) << char(223);
+
+	gotoxy(120, 5);
+	cout << char(219) << char(219) << endl;
+	gotoxy(120, 6);
+	cout << char(219) << char(219) << endl;
+	gotoxy(120, 7);
+	cout << char(220) << char(220) << endl;
+	gotoxy(120, 8);
+	cout << char(223) << char(223) << endl;
+
+	gotoxy(61, 15);
+	cout << "               xxxx                  xxxx";
+	gotoxy(61, 16);
+	cout << "            x        x            x        x";
+	gotoxy(61, 17);
+	cout << "          x           x         x           x";
+	gotoxy(61, 18);
+	cout << "                xx                    xx";
+	gotoxy(61, 19);
+	cout << "               x    x                x    x";
+	gotoxy(61, 20);
+	cout << "              x      x              x      x";
+	gotoxy(61, 21);
+	cout << "              x      x              x      x";
+	gotoxy(61, 22);
+	cout << "              x    xxx              x    xxx";
+	gotoxy(61, 23);
+	cout << "              x   xxxx              x   xxxx";
+	gotoxy(61, 24);
+	cout << "               x xxxx                x xxxx";
+	gotoxy(61, 25);
+	cout << "                xxx         xxx       xxx";
+	gotoxy(61, 26);
+	cout << "                           xxxxx";
+	gotoxy(61, 27);
+	cout << "                           xxxxx";
+	gotoxy(61, 28);
+	cout << "            xx              xxx             xx";
+	gotoxy(61, 29);
+	cout << "          xx                                  xx";
+	gotoxy(61, 30);
+	cout << "        xxx                                    xxx";
+	gotoxy(61, 31);
+	cout << "           xx                                xx";
+	gotoxy(61, 32);
+	cout << "             xx                             xx";
+	gotoxy(61, 33);
+	cout << "               xxxx                      xxxx";
+	gotoxy(61, 34);
+	cout << "                    xxx               xxx";
+	gotoxy(61, 35);
+	cout << "                        xxxx     xxx";
+}
+
 void DisableResizeWindow()
 {
 	HWND hWnd = GetConsoleWindow();
