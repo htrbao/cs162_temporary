@@ -51,6 +51,7 @@ void setTextColor(long color)
 
 void drawRec(long x, long y, long posX, long posY)
 {
+	setTextColor(7);
 	x = x + 2;
 	y = y * 4 + 1;
 	gotoxy(posX, posY);
@@ -82,8 +83,38 @@ void drawRec(long x, long y, long posX, long posY)
 
 void drawRec2(long x, long y, long posX, long posY)
 {
+	setTextColor(7);
 	x = x + 2;
 	y = y * 4 + 1;
+	gotoxy(posX, posY);
+	for (long i = 1; i <= y; i++)
+	{
+		if (i == 1) cout << char(201);
+		else if (i == y) cout << char(187);
+		else cout << char(205);
+	}
+	for (long i = 2; i < x; i++)
+	{
+		posY++;
+		gotoxy(posX, posY);
+		for (long j = 1; j <= y; j++)
+		{
+			if (j == 1 || j == y) cout << char(186);
+			else cout << ' ';
+		}
+	}
+	posY++;
+	gotoxy(posX, posY);
+	for (long i = 1; i <= y; i++)
+	{
+		if (i == 1) cout << char(200);
+		else if (i == y) cout << char(188);
+		else cout << char(205);
+	}
+}
+
+void drawRec3(long x, long y, long posX, long posY)
+{	
 	gotoxy(posX, posY);
 	for (long i = 1; i <= y; i++)
 	{
@@ -127,6 +158,64 @@ void avatar(bool i,long length, short posX, short posY)
 		for (long e = posY + 1; e <= posY + length; e++)
 		{
 			gotoxy(k, e);  cout << ' ';
+		}
+	}
+}
+
+bool isOK(long x, long y, long posX, long posY)
+{
+	setTextColor(12);
+	drawRec3(x, y, posX, posY);
+	setTextColor(7);
+	gotoxy(posX + 1, posY + 1); cout << "  Are you sure with your choice?";
+	long cnt = 0;
+
+	setTextColor(9);
+	gotoxy(posX + 2, posY + x - 3); cout << "Yes";
+	gotoxy(posX + 2, posY + x - 2); cout << char(22);
+
+	setTextColor(7);
+	gotoxy(posX + y - 4, posY + x - 3); cout << "No";
+	gotoxy(posX + y - 4, posY + x - 2); cout << char(22);
+
+	while (true)
+	{
+		char c = _getch();
+		if (c == 'Y' || c == 'y') return true;
+		if (c == 'N' || c == 'n') return false;
+		
+		if (c == char(75) || c == 'a' || c == 'A' || c == char(9)) cnt--;
+		else if (c == char(77) || c == 'd' || c == 'D' || c == char(9)) cnt++;
+
+		if (cnt < 0) cnt = 1;
+		if (cnt == 2) cnt = 0;
+
+		if (c == char(13))
+		{
+			if (cnt == 0) return true;
+			else return false;
+		}
+
+		if (cnt == 0)
+		{
+			setTextColor(9);
+			gotoxy(posX + 2, posY + x - 3); cout << "Yes";
+			gotoxy(posX + 2, posY + x - 2); cout << char(22);
+			
+			setTextColor(7);	
+			gotoxy(posX + y - 4, posY + x - 3); cout << "No";
+			gotoxy(posX + y - 4, posY + x - 2); cout << char(22);
+		}
+
+		if (cnt == 1)
+		{
+			setTextColor(9);
+			gotoxy(posX + y - 4, posY + x - 3); cout << "No";
+			gotoxy(posX + y - 4, posY + x - 2); cout << char(22);
+
+			setTextColor(7);
+			gotoxy(posX + 2, posY + x - 3); cout << "Yes";
+			gotoxy(posX + 2, posY + x - 2); cout << char(22);
 		}
 	}
 }
@@ -194,10 +283,6 @@ void printSettingBox(roll* setting, long n)
 
 	for (long i = 0; i < n; i++)
 	{
-		SetConsoleTextAttribute(hStdout, 7);
-		gotoxy(setting[i].x, setting[i].y);
-		cout << "               ";
-
 		SetConsoleTextAttribute(hStdout, setting[i].color);
 		gotoxy(setting[i].x, setting[i].y);
 		cout << setting[i].message;
