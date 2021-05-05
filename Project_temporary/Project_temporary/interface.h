@@ -33,6 +33,10 @@ void setTextColor(long color);
 
 void showInput(bool show, HANDLE hStdin, DWORD mode);
 
+void drawRec3(long x, long y, long posX, long posY);
+
+bool isOK(long x, long y, long posX, long posY);
+
 void welcome();
 
 void warning(string warningText, long x, long y, long posX, long posY);

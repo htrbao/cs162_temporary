@@ -20,11 +20,14 @@ int main()
 	updateStudent("STUDENT.csv");
 	updateStaff("STAFF.csv");
 	//welcome();
-
+	cout << headClass->name;
+	system("pause");
 	//end
 
 	while (1)
 	{
+		setTextColor(7);
+		system("cls");
 		studentNode* pStudent = nullptr;
 		staffNode* pStaff = nullptr;
 		loginScreen(pStudent, pStaff);

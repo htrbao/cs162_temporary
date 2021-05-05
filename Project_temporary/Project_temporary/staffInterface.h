@@ -17,6 +17,10 @@ void aboutProfile(staffNode*& pItem, bool& isLogOut);
 
 void initialStaffBackground(staffNode* pItem);
 
+void creatNewClass();
+
+void viewStudent();
+
 void staffMenu(staffNode*& pItem);
 
 #endif // !_STAFFINTERFACE_H_
