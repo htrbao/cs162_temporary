@@ -1,16 +1,18 @@
 #include "login.h"
 
 void loginScreen(studentNode*& pSt, staffNode*& pStf)
-{
+{	
 	system("cls");
+	setBackgroundColor(0);
 	setScreenSize(360, 120, 760, 580);
-	//DisableResizeWindow();
-	//ShowScrollbar(false);
+	DisableResizeWindow();
+	DisableCtrButton(0, 0, 1);
+	ShowScrollbar(false);
 	string username = "";
 	int length;
 	string password = "";
 	ifstream in;
-	in.open("logo.txt");
+	in.open("img/logo.txt");
 	int input;
 	//in >> input;
 	for (int i = 0; i < 13; i++)
@@ -24,7 +26,7 @@ void loginScreen(studentNode*& pSt, staffNode*& pStf)
 		//cout << endl;
 	}
 	in.close();
-	in.open("moodle.txt");
+	in.open("img/moodle.txt");
 	for (int i = 0; i < 4; i++)
 	{
 		for (int j = 0; j < 37; j++)
@@ -36,7 +38,7 @@ void loginScreen(studentNode*& pSt, staffNode*& pStf)
 		//cout << endl;
 	}
 	in.close();
-	in.open("login.txt");
+	in.open("img/login.txt");
 	for (int i = 0; i < 4; i++)
 	{
 		for (int j = 0; j < 30; j++)

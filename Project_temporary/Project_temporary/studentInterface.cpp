@@ -6,7 +6,7 @@ void initialStudentBackground(studentNode* pItem)
 	avatar(0, 1, 162, 1);
 	setTextColor(7);
 	gotoxy(167, 2); cout << pItem->name;
-
+	setScreenSize(0, 0, 1471, 690);
 	gotoxy(0, 5);
 	for (long i = 0; i <= 199; i++)
 	{
@@ -34,12 +34,21 @@ void clearStudentScreen()
 
 void viewStudentProfile(studentNode* pItem)
 {
-
+	avatar(0, 5, 2, 7);
+	setTextColor(11);
+	gotoxy(30, 7); cout << "Full name: " << pItem->name;
+	gotoxy(30, 9); cout << "User name: " << pItem->username;
+	gotoxy(30, 11); cout << "ID: " << pItem->id;
+	gotoxy(30, 13); cout << "Role: " << "Student";
+	gotoxy(30, 15); cout << "Birthday: "; printBirthday(pItem->birthday);
+	gotoxy(30, 17); cout << "Class: " << pItem->classname;
+	setTextColor(7);
+	if (_getch())clearStaffScreen();
 }
 
 void changeStudentPassword(studentNode*& pItem)
 {
-
+	
 }
 
 void aboutStudentProfile(studentNode*& pItem, bool& isLogOut)
@@ -147,6 +156,7 @@ void studentMenu(studentNode*& pItem)
 				aboutStudentProfile(pItem, isLogOut);
 				if (isLogOut) break;
 			}
+			
 		}
 
 		if (cnt < 0) cnt = numberSetting - 1;

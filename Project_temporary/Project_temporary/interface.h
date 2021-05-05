@@ -53,4 +53,6 @@ void setColor(int color);
 
 int inputKey();
 
+void setBackgroundColor(int BackC);
+
 #endif // !_INTERFACE_H_

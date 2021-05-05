@@ -316,6 +316,7 @@ void staffMenu(staffNode*& pItem)
 
 	setting[0].color = 15;
 	int cnt = 0;
+
 	system("cls");
 	initialStaffBackground(pItem);
 	ShowCur(0);
