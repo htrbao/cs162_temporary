@@ -27,7 +27,13 @@ void drawRec(long x, long y, long posX, long posY);
 
 void drawRec2(long x, long y, long posX, long posY);
 
+void drawRec3(long x, long y, long posX, long posY);
+
 void avatar(bool i, long length, short posX, short posY); // draw avatar randomly at position[X, Y]
+
+void ellipses(int posX, int posY);
+
+bool isOK();
 
 void setTextColor(long color);
 
