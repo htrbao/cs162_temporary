@@ -27,10 +27,11 @@ void clearSettingScreen()
 
 void initialStaffBackground(staffNode* pItem)
 {
-	avatar(0, 1 ,162, 1);
+	ShowCur(0);
+	setScreenSize(0, 0, 1471, 690);
+	avatar(0, 1, 162, 1);
 	setTextColor(7);
 	gotoxy(167, 2); cout << pItem->name;
-	setScreenSize(0, 0, 1471, 690);
 	gotoxy(0, 5);
 	for (long i = 0; i <= 199; i++)
 	{
@@ -60,6 +61,22 @@ void viewProfile(staffNode* pItem)
 void changePassword(staffNode*& pItem)
 {
 
+}
+
+void creatNewClass()
+{
+	setTextColor(7);
+
+
+
+	setTextColor(7);
+}
+
+void viewStudent()
+{
+	displayClassList();
+	system("pause");
+	clearStaffScreen();
 }
 
 void aboutProfile(staffNode*& pItem, bool& isLogOut)
@@ -169,6 +186,12 @@ void staffMenu(staffNode*& pItem)
 		else if (c == char(77) || c == 'd' || c == 'D') cnt++;
 		
 		if (c == char(13) || c == char(80)) {
+			if (cnt == 0) {
+				creatNewClass();
+			}
+			if (cnt == 2) {
+				viewStudent();
+			}
 			if (cnt == 3) {
 				aboutProfile(pItem, isLogOut);
 				if(isLogOut) break;

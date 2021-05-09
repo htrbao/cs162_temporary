@@ -37,7 +37,7 @@ struct staffNode {
 
 extern Class* headClass,* endClass;
 extern staffNode* headStaff, * endStaff;
-extern studentNode* headStudent, * endStudent;
+
 #include "staffInterface.h"
 long random(long n);
 Class* findClass(string classname, bool doAdd);
@@ -49,7 +49,7 @@ void addStudentNode(Class*& pClass, studentNode* pItem);
 void addStaffNode(staffNode* pItem);
 bool addFromCSV(string filename);
 void addDataToStaffCsvFile(staffNode* pHead);
-void addDataToStudentCsvFile(studentNode* pHead);
+void addDataToStudentCsvFile(Class* pHead);
 void addFromKeyb(string name, string id, string cl, string username, string password, string birthday, string role, studentNode*& headStudent, studentNode*& endStudent);
 void displayClassList();
 void displayStudentList(Class* pClass);

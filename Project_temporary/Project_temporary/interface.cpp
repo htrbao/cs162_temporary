@@ -113,6 +113,7 @@ void drawRec2(long x, long y, long posX, long posY)
 
 void avatar(bool i,long length, short posX, short posY)
 {
+	setTextColor(7);
 	if (i == 1)
 	{
 		drawRec(length, length - (length == 1 ? 0 : 1), posX, posY);
@@ -129,6 +130,7 @@ void avatar(bool i,long length, short posX, short posY)
 			gotoxy(k, e);  cout << ' ';
 		}
 	}
+	setTextColor(7);
 }
 
 void showInput(bool show, HANDLE hStdin, DWORD mode)

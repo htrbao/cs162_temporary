@@ -13,6 +13,10 @@ void viewProfile(staffNode* pItem);
 
 void changePassword(staffNode*& pItem);
 
+void creatNewClass();
+
+void viewStudent();
+
 void aboutProfile(staffNode*& pItem, bool& isLogOut);
 
 void initialStaffBackground(staffNode* pItem);
