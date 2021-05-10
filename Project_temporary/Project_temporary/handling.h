@@ -10,16 +10,16 @@
 
 using namespace std;
 
-struct subject {
-	string subName, subID;
+struct course {
+	string subName, subID, teacher;
 	double midterm, final, lab;
-	subject* pNext, * pPrev;
+	course* pNext, * pPrev;
 };
 
 struct studentNode {
 	string name, id, classname, username, password;
 	long birthday; //ddmmyyyy
-	subject* headSubject;
+	course* headSubject,* endSubject;
 	studentNode* pNext,* pPrev;
 };
 
@@ -35,6 +35,7 @@ struct staffNode {
 	staffNode* pNext, * pPrev;
 };
 
+extern course* headCourse, * endCourse;
 extern Class* headClass,* endClass;
 extern staffNode* headStaff, * endStaff;
 

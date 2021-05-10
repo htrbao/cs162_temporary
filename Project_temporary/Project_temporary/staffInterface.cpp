@@ -134,6 +134,8 @@ void creatNewClass()
 		if (cnt < 0) cnt = 3;
 		if (cnt == 4) cnt = 0;
 
+		if (c == char(8)) break;
+
 		if (c == char(13))
 		{
 			ShowCur(1);
@@ -224,12 +226,129 @@ void creatNewClass()
 
 void viewStudent(Class* pClass)
 {
+	setTextColor(7);
+	gotoxy(2, 7); cout << "Class " << pClass->name;
+	studentNode* pCurClass = pClass->headStudent;
+	long i = 1;
+	while (pCurClass)
+	{
+		gotoxy(2, 7 + i * 2); cout << pCurClass->name << (pCurClass->name.size() < 14 ? "\t\t\t" : "\t\t") << pCurClass->id <<"\t\t" << pCurClass->classname;
+		pCurClass = pCurClass->pNext;
+		i++;
+	}
+	system("pause");
 
 }
 
 void viewClass()
 {
+	setTextColor(7);
 
+	gotoxy(2, 7); setTextColor(15); cout << "Write the available school year (2 digit): ";
+	ShowCur(1);
+	long inp, length = 0;
+	string scYear;
+	while (!((inp = inputKey()) == 13 && length == 2) || (inp == 9 && length == 2))
+	{
+		if ('0' <= inp && inp <= '9' && length < 2)
+		{
+			length++;
+			scYear.push_back(inp);
+			gotoxy(44 + length, 7);
+			cout << char(inp);
+		}
+		else
+			if (inp == 8 && length > 0)
+			{
+
+				scYear.pop_back();
+				gotoxy(44 + length, 7);
+				cout << " ";
+				gotoxy(44 + length, 7);
+				length--;
+			}
+	}
+	Class* pCur = headClass, *head = nullptr, *end = nullptr;
+	while (pCur)
+	{
+		if (pCur->name[0] == scYear[0] && pCur->name[1] == scYear[1])
+		{
+			head = pCur;
+			break;
+		}
+		pCur = pCur->pNext;
+	}
+	ShowCur(0);
+	long i = 1;
+	setTextColor(7);
+	while (pCur)
+	{
+		gotoxy(2, 7 + i * 2); cout << pCur->name;
+		if (pCur->name[0] == scYear[0] && pCur->name[1] == scYear[1] && pCur->pNext->name[0] != scYear[0] && pCur->pNext->name[1] != scYear[1])
+		{
+			gotoxy(2, 7 + i * 2); cout << pCur->name;
+			end = pCur;
+			break;
+		}
+		i++;
+		pCur = pCur->pNext;
+	}
+
+	pCur = head;
+	setTextColor(7 * 16);
+	gotoxy(2, 9); cout << pCur->name;
+	setTextColor(7);
+	long cnt = 1;
+
+	while (1)
+	{
+		char c = _getch();
+
+		if (c == char(72) || c == 'w' || c == 'W')
+		{
+			cnt--;
+			if(pCur != head) pCur = pCur->pPrev;
+			else
+			{
+				pCur = end;
+				cnt = i;
+			}
+		}
+		else if (c == char(80) || c == 's' || c == 'S')
+		{
+			cnt++;
+			if (pCur != end)
+			{
+				pCur = pCur->pNext;
+			}
+			else
+			{
+				cnt = 1;
+				pCur = head;
+			}
+		}
+
+		if (c == char(13))
+		{
+			clearStaffScreen(); 
+			viewStudent(pCur);
+			break;
+		}
+
+		if (c == char(8)) break;
+
+		gotoxy(2, 7 + cnt * 2); setTextColor(7 * 16); cout << pCur->name;
+		if (pCur != end) {
+			gotoxy(2, 7 + (cnt + 1) * 2); setTextColor(7); cout << pCur->pNext->name;
+			gotoxy(2, 7 + (i) * 2); setTextColor(7); cout << end->name;
+		}
+		if (pCur != head) {
+			gotoxy(2, 7 + (cnt - 1) * 2); setTextColor(7); cout << pCur->pPrev->name;
+			gotoxy(2, 7 + (1) * 2); setTextColor(7); cout << head->name;
+		}
+	}
+
+	ShowCur(0);
 	clearStaffScreen();
 }
 
