@@ -237,10 +237,15 @@ void addDataToStaffCsvFile(staffNode* pItem)
 void addDataToStudentCsvFile(Class* pItem) {
 	ofstream fout;
 	fout.open("STUDENT.csv", ios::trunc);
-	fout << "Name" << "," << "id" << "," << "username" << "," << "password" << "," << "birthday";
-	while (pItem->headStudent!= nullptr) {
-		fout << '\n' << pItem->headStudent->name << "," << pItem->headStudent->id << "," << pItem->headStudent->classname << "," << pItem->headStudent->username << "," << pItem->headStudent->password << "," << pItem->headStudent->birthday;
-		pItem->headStudent = pItem->headStudent->pNext;
+	fout << "Name" << "," << "id" << ",class," << "username" << "," << "password" << "," << "birthday";
+	while (pItem) 
+	{
+		while (pItem->headStudent != nullptr) 
+		{
+			fout << '\n' << pItem->headStudent->name << "," << pItem->headStudent->id << "," << pItem->headStudent->classname << "," << pItem->headStudent->username  << "," << pItem->headStudent->password << "," << pItem->headStudent->birthday;
+			pItem->headStudent = pItem->headStudent->pNext;
+		}
+		pItem = pItem->pNext;
 	}
 		fout.close();
 	
