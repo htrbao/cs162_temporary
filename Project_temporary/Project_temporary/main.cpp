@@ -29,6 +29,7 @@ int main()
 		staffNode* pStaff = nullptr;
 		loginScreen(pStudent, pStaff);
 
+		ShowCur(0);
 		if (pStudent) {
 			studentMenu(pStudent);
 		}

@@ -111,6 +111,112 @@ void drawRec2(long x, long y, long posX, long posY)
 	}
 }
 
+void drawRec3(long x, long y, long posX, long posY)
+{
+	gotoxy(posX, posY);
+	for (long i = 1; i <= y; i++)
+	{
+		if (i == 1) cout << char(201);
+		else if (i == y) cout << char(187);
+		else cout << char(205);
+	}
+	for (long i = 2; i < x; i++)
+	{
+		posY++;
+		gotoxy(posX, posY);
+		for (long j = 1; j <= y; j++)
+		{
+			if (j == 1 || j == y) cout << char(186);
+			else cout << ' ';
+		}
+	}
+	posY++;
+	gotoxy(posX, posY);
+	for (long i = 1; i <= y; i++)
+	{
+		if (i == 1) cout << char(200);
+		else if (i == y) cout << char(188);
+		else cout << char(205);
+	}
+}
+
+void ellipses(int posX, int posY) {
+	int n = 46;
+
+	for (int i = 0; i < 5; i++) {
+		gotoxy(posX, posY);
+		Sleep(800);
+		if (i % 4 == 1) cout << char(n);
+		else if (i % 4 == 2) cout << char(n) << char(n);
+		else if (i % 4 == 3) cout << char(n) << char(n) << char(n);
+		else cout << "    ";
+	}
+}
+
+bool isOK()
+{
+	setTextColor(12);
+	drawRec3(10, 34, 50, 18);
+	gotoxy(52, 19); setTextColor(7); cout << "Are you sure with your choice?";
+
+	gotoxy(52, 25); setTextColor(11); cout << "Yes";
+	gotoxy(52, 26); cout << char(22);
+
+	gotoxy(80, 25); setTextColor(7); cout << "No";
+	gotoxy(80, 26); cout << char(22);
+
+	long cnt = 1;
+	while (1)
+	{
+		char c = _getch();
+		
+		if (c == char(75) || c == 'a' || c == 'A' || c == char(77) || c == 'd' || c == 'D') cnt = !cnt;
+
+		if (c == 'N' || c == 'n')
+		{
+			gotoxy(52, 25); setTextColor(7); cout << "Yes";
+			gotoxy(52, 26); cout << char(22);
+
+			gotoxy(80, 25); setTextColor(11); cout << "No";
+			gotoxy(80, 26); cout << char(22);
+			return false;
+		}
+		else if (c == 'Y' || c == 'y')
+		{
+			gotoxy(52, 25); setTextColor(11); cout << "Yes";
+			gotoxy(52, 26); cout << char(22);
+
+			gotoxy(80, 25); setTextColor(7); cout << "No";
+			gotoxy(80, 26); cout << char(22);
+			return true;
+		}
+
+		if (c == char(13))
+		{
+			if (cnt == 1) return true;
+			else return false;
+		}
+
+		if (cnt == 1)
+		{
+			gotoxy(52, 25); setTextColor(11); cout << "Yes";
+			gotoxy(52, 26); cout << char(22);
+
+			gotoxy(80, 25); setTextColor(7); cout << "No";
+			gotoxy(80, 26); cout << char(22);
+		}
+		if (cnt == 0)
+		{
+			gotoxy(52, 25); setTextColor(7); cout << "Yes";
+			gotoxy(52, 26); cout << char(22);
+
+			gotoxy(80, 25); setTextColor(11); cout << "No";
+			gotoxy(80, 26); cout << char(22);
+		}
+	}
+	return true;
+}
+
 void avatar(bool i,long length, short posX, short posY)
 {
 	setTextColor(7);
@@ -196,10 +302,6 @@ void printSettingBox(roll* setting, long n)
 
 	for (long i = 0; i < n; i++)
 	{
-		SetConsoleTextAttribute(hStdout, 7);
-		gotoxy(setting[i].x, setting[i].y);
-		cout << "               ";
-
 		SetConsoleTextAttribute(hStdout, setting[i].color);
 		gotoxy(setting[i].x, setting[i].y);
 		cout << setting[i].message;

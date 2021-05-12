@@ -15,7 +15,9 @@ void changePassword(staffNode*& pItem);
 
 void creatNewClass();
 
-void viewStudent();
+void viewStudent(Class* pClass);
+
+void viewClass();
 
 void aboutProfile(staffNode*& pItem, bool& isLogOut);
 
