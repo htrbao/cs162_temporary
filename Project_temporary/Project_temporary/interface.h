@@ -51,4 +51,6 @@ int inputKey();
 
 void setBackgroundColor(int BackC);
 
+void ellipses(int posX, int posY);
+
 #endif // !_INTERFACE_H_

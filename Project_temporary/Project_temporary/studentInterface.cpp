@@ -233,3 +233,19 @@ void studentMenu(studentNode*& pItem)
 	}
 	delete[] setting;
 }
+
+void viewCourses(studentNode* pItem)
+{
+	setTextColor(11);
+	int n = 7;
+	gotoxy(30, n); cout << "Courses: " << endl << pItem->headSubject->subName;
+	pItem->headSubject = pItem->headSubject->pNext;
+
+	while (pItem->headSubject != nullptr) {
+		n += 2;
+		gotoxy(30, n); cout << pItem->headSubject;
+	}
+
+	setTextColor(7);
+	if (_getch())clearStudentScreen();
+}

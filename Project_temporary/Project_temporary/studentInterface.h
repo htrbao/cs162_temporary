@@ -17,4 +17,6 @@ void aboutStudentProfile(studentNode*& pItem, bool& isLogOut);
 
 void studentMenu(studentNode*& pItem);
 
+void viewCourses(studentNode* pItem);
+
 #endif // !_STUDENTINTERFACE_H_
