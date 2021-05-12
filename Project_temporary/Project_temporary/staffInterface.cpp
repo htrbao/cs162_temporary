@@ -236,7 +236,61 @@ void viewStudent(Class* pClass)
 		pCurClass = pCurClass->pNext;
 		i++;
 	}
-	system("pause");
+	pCurClass = pClass->headStudent;
+	gotoxy(2, 10); setTextColor(15); for (long j = 1; j <= pCurClass->name.size(); j++) cout << char(22);
+	long cnt = 1;
+	while (1)
+	{
+		char c = _getch();
+
+		if (c == char(72) || c == 'w' || c == 'W')
+		{
+			cnt--;
+			if (pCurClass != pClass->headStudent) pCurClass = pCurClass->pPrev;
+			else
+			{
+				pCurClass = pClass->endStudent;
+				cnt = i - 1;
+			}
+		}
+		else if (c == char(80) || c == 's' || c == 'S')
+		{
+			cnt++;
+			if (pCurClass != pClass->endStudent)
+			{
+				pCurClass = pCurClass->pNext;
+			}
+			else
+			{
+				cnt = 1;
+				pCurClass = pClass->headStudent;
+			}
+		}
+
+		if (c == char(13))
+		{
+			clearStaffScreen();
+			break;
+		}
+
+		if (c == char(8)) break;
+
+		gotoxy(2, 7 + cnt * 2 + 1); setTextColor(15); for (long j = 1; j <= pCurClass->name.size(); j++) cout << char(22);
+		if (cnt != i - 1) {
+			gotoxy(2, 7 + (cnt + 1) * 2 + 1); setTextColor(15); for (long j = 1; j <= pCurClass->pNext->name.size(); j++) cout << " ";
+		}
+		else
+		{
+			gotoxy(2, 7 + (1) * 2 + 1); setTextColor(15); for (long j = 1; j <= pClass->headStudent->name.size(); j++) cout << " ";
+		}
+		if (cnt != 1) {
+			gotoxy(2, 7 + (cnt - 1) * 2 + 1); setTextColor(15); for (long j = 1; j <= pCurClass->pPrev->name.size(); j++) cout << " ";
+		}
+		else
+		{
+			gotoxy(2, 7 + (i - 1) * 2 + 1); setTextColor(15); for (long j = 1; j <= pClass->endStudent->name.size(); j++) cout << " ";
+		}
+	}
 
 }
 
