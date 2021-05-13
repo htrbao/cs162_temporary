@@ -82,6 +82,7 @@ void changeStudentPassword(studentNode*& pItem)
 	{
 		gotoxy(32, 9);
 		length = 0;
+		password = "";
 		cout << "Enter your new  password";
 		gotoxy(32, 10);
 		while ((inp = inputKey()) != 13)
@@ -106,7 +107,9 @@ void changeStudentPassword(studentNode*& pItem)
 		}
 		pItem->password = password;
 		gotoxy(32, 11);
-		cout << "Your password is updated";
+		cout << "Your password is updated " << endl;
+		addDataToStudentCsvFile(headClass);
+		updateStudent("STUDENT.csv");
 		if (_getch())clearStaffScreen();
 	}
 
@@ -232,4 +235,20 @@ void studentMenu(studentNode*& pItem)
 		printSettingBox(setting, numberSetting);
 	}
 	delete[] setting;
+}
+
+void viewCourses(studentNode* pItem)
+{
+	setTextColor(11);
+	int n = 7;
+	gotoxy(30, n); cout << "Courses: " << endl << pItem->headSubject->subName;
+	pItem->headSubject = pItem->headSubject->pNext;
+
+	while (pItem->headSubject != nullptr) {
+		n += 2;
+		gotoxy(30, n); cout << pItem->headSubject;
+	}
+
+	setTextColor(7);
+	if (_getch())clearStudentScreen();
 }
