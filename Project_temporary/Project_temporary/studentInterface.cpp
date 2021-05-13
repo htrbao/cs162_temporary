@@ -107,7 +107,7 @@ void changeStudentPassword(studentNode*& pItem)
 		}
 		pItem->password = password;
 		gotoxy(32, 11);
-		cout << "Your password is updated " << pItem->password << " " << password;
+		cout << "Your password is updated " << endl;
 		addDataToStudentCsvFile(headClass);
 		updateStudent("STUDENT.csv");
 		if (_getch())clearStaffScreen();
