@@ -140,18 +140,7 @@ void drawRec3(long x, long y, long posX, long posY)
 	}
 }
 
-void ellipses(int posX, int posY) {
-	int n = 46;
 
-	for (int i = 0; i < 5; i++) {
-		gotoxy(posX, posY);
-		Sleep(800);
-		if (i % 4 == 1) cout << char(n);
-		else if (i % 4 == 2) cout << char(n) << char(n);
-		else if (i % 4 == 3) cout << char(n) << char(n) << char(n);
-		else cout << "    ";
-	}
-}
 
 bool isOK()
 {
@@ -912,8 +901,20 @@ void setBackgroundColor(int BackC)
 	}
 	return;
 }
-
-void ellipses(int posX, int posY) {
+//void ellipses(int posX, int posY) {
+//	int n = 46;
+//
+//	for (int i = 0; i < 5; i++) {
+//		gotoxy(posX, posY);
+//		Sleep(800);
+//		if (i % 4 == 1) cout << char(n);
+//		else if (i % 4 == 2) cout << char(n) << char(n);
+//		else if (i % 4 == 3) cout << char(n) << char(n) << char(n);
+//		else cout << "    ";
+//	}
+//}
+void ellipses(int posX, int posY) 
+{
 	int n = 46;
 
 	for (int i = 0; i < 60; i++) {
