@@ -82,6 +82,7 @@ void changeStudentPassword(studentNode*& pItem)
 	{
 		gotoxy(32, 9);
 		length = 0;
+		password = "";
 		cout << "Enter your new  password";
 		gotoxy(32, 10);
 		while ((inp = inputKey()) != 13)
@@ -106,7 +107,9 @@ void changeStudentPassword(studentNode*& pItem)
 		}
 		pItem->password = password;
 		gotoxy(32, 11);
-		cout << "Your password is updated";
+		cout << "Your password is updated " << pItem->password << " " << password;
+		addDataToStudentCsvFile(headClass);
+		updateStudent("STUDENT.csv");
 		if (_getch())clearStaffScreen();
 	}
 
