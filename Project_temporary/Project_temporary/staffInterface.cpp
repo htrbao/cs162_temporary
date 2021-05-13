@@ -138,15 +138,20 @@ void creatNewClass()
 
 		if (c == char(13))
 		{
-			ShowCur(1);
-			if (cnt < 3) {
+			if (cnt < 3 && sizeClass[cnt] != 0) {
+				gotoxy(56, 14 + cnt * 3);
+				cout << " ";
+				sizeClass[cnt] = 0;
+			}
+			else if (cnt < 3 && sizeClass[cnt] == 0) {
+				ShowCur(1);
 				gotoxy(56, 14 + cnt * 3);
 				cin >> sizeClass[cnt];
 			}
 			ShowCur(0);
 			if (cnt == 3)
 			{
-				if (isOK())
+				if (isOK(""))
 				{
 					setTextColor(10);
 					drawRec3(7, 25, 50, 18);
@@ -212,6 +217,13 @@ void creatNewClass()
 				cout << " ";
 				setTextColor(7);
 			}
+			if (i < 3 && sizeClass[i] == 0)
+			{
+				gotoxy(selection[i].x + 3, selection[i].y);
+				setTextColor(7);
+				cout << " ";
+				
+			}
 		}
 		selection[3].color = 7;
 		selection[cnt].color = (cnt == 3 ? 15 * 16 : 12);
@@ -237,6 +249,14 @@ void viewStudent(Class* pClass)
 		i++;
 	}
 	pCurClass = pClass->headStudent;
+
+	if (!pCurClass)
+	{
+		warning("No student here", 9, 20, 59, 19);
+		system("pause");
+		return;
+	}
+
 	gotoxy(2, 10); setTextColor(15); for (long j = 1; j <= pCurClass->name.size(); j++) cout << char(22);
 	long cnt = 1;
 	while (1)
@@ -314,7 +334,6 @@ void viewClass()
 		else
 			if (inp == 8 && length > 0)
 			{
-
 				scYear.pop_back();
 				gotoxy(44 + length, 7);
 				cout << " ";
@@ -335,6 +354,20 @@ void viewClass()
 	ShowCur(0);
 	long i = 1;
 	setTextColor(7);
+
+	if (!head) {
+		string str = "Do you want to creat this new school year?";
+		if (isOK(str)) {
+			clearStaffScreen();
+			gotoxy(2, 6); setTextColor(8); cout << "<creat new class> page";
+			creatNewClass();
+		}
+		gotoxy(2, 6); cout << "                          ";
+		clearStaffScreen();
+		return;
+		
+	}
+
 	while (pCur)
 	{
 		gotoxy(2, 7 + i * 2); cout << pCur->name;
@@ -346,6 +379,12 @@ void viewClass()
 		}
 		i++;
 		pCur = pCur->pNext;
+		if (pCur->pNext == nullptr)
+		{
+			gotoxy(2, 7 + i * 2); cout << pCur->name;
+			end = pCur;
+			break;
+		}
 	}
 
 	pCur = head;
@@ -478,7 +517,7 @@ void staffMenu(staffNode*& pItem)
 
 	//setScreenSize(30, 30, 1100, 1011);
 
-	long numberSetting = 4;
+	long numberSetting = 5;
 	bool isLogOut = false;
 
 	roll* setting;
@@ -487,11 +526,12 @@ void staffMenu(staffNode*& pItem)
 	setting[0].message = "CREAT NEW CLASS";
 	setting[1].message = "ADD NEW STUDENT";
 	setting[2].message = "VIEW STUDENT";
-	setting[3].message = "...";
+	setting[3].message = "ADD NEW COURSE";
+	setting[4].message = "...";
 
 	for (long i = 0; i < numberSetting; i++)
 	{
-		setting[i].x = i * 53;
+		setting[i].x = i * 40;
 		setting[i].y = 2;
 		setting[i].color = 8;
 	}
@@ -517,13 +557,16 @@ void staffMenu(staffNode*& pItem)
 			if (cnt == 0) {
 				creatNewClass();
 			}
+			if (cnt == 1) {
+
+			}
 			if (cnt == 2) {
 				viewClass();
 			}
-			if (cnt == 3) {
+			if (cnt == 4) {
 				aboutProfile(pItem, isLogOut);
-				if(isLogOut) break;
 			}
+			if (isLogOut) break;
 		}
 
 		if (cnt < 0) cnt = numberSetting - 1;

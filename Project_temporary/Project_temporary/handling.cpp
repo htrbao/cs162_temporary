@@ -1,5 +1,6 @@
 	#include "handling.h"
 
+course* headCourse, * endCourse;
 Class* headClass,* endClass;
 staffNode* headStaff,* endStaff;
 
@@ -31,6 +32,7 @@ Class* findClass(string classname, bool doAdd)
 	}
 	else return nullptr;
 }
+
 
 void updateStudent(string filename)
 {
@@ -145,6 +147,20 @@ void addStaffNode(staffNode* pItem)
 	}
 	endStaff->pNext = pItem;
 	endStaff = endStaff->pNext;
+}
+
+void addCourseNode(course* pItem)
+{
+	pItem->pNext = nullptr;
+	pItem->pPrev = endCourse;
+	if (!headStaff)
+	{
+		headCourse = pItem;
+		endCourse = pItem;
+		return;
+	}
+	endCourse->pNext = pItem;
+	endCourse = endCourse->pNext;
 }
 
 bool addFromCSV(string filename)

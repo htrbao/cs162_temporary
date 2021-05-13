@@ -41,21 +41,31 @@ extern staffNode* headStaff, * endStaff;
 
 #include "staffInterface.h"
 long random(long n);
+
 Class* findClass(string classname, bool doAdd);
 void updateStudent(string filename);
 void updateStaff(string filename);
-void addClassNode(string classname);
+
 void printBirthday(long b);
+
+void addClassNode(string classname);
 void addStudentNode(Class*& pClass, studentNode* pItem);
 void addStaffNode(staffNode* pItem);
+void addCourseNode(course* pItem);
+
 bool addFromCSV(string filename);
+
 void addDataToStaffCsvFile(staffNode* pHead);
 void addDataToStudentCsvFile(Class* pHead);
+
 void addFromKeyb(string name, string id, string cl, string username, string password, string birthday, string role, studentNode*& headStudent, studentNode*& endStudent);
+
 void displayClassList();
 void displayStudentList(Class* pClass);
 bool checkLogin(string username, string password, studentNode*& headStudent, studentNode*& endStudent, studentNode*& pSt, staffNode*& pStf);
+
 void cleanUpClass();
-bool checkk(string username, string password, studentNode*& pSt, staffNode*& pStf);
 void cleanUpStaff();
+
+bool checkk(string username, string password, studentNode*& pSt, staffNode*& pStf);
 #endif // !_HANDLING_H_

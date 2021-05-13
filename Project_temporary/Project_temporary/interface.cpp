@@ -153,11 +153,12 @@ void ellipses(int posX, int posY) {
 	}
 }
 
-bool isOK()
+bool isOK(string str)
 {
 	setTextColor(12);
-	drawRec3(10, 34, 50, 18);
+	drawRec3(10, (str.size() <= 32 ? 34 : str.size() + 2), 50, 18);
 	gotoxy(52, 19); setTextColor(7); cout << "Are you sure with your choice?";
+	gotoxy(51, 20); setTextColor(7); cout << str;
 
 	gotoxy(52, 25); setTextColor(11); cout << "Yes";
 	gotoxy(52, 26); cout << char(22);

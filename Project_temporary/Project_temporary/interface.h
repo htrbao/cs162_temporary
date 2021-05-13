@@ -33,7 +33,7 @@ void avatar(bool i, long length, short posX, short posY); // draw avatar randoml
 
 void ellipses(int posX, int posY);
 
-bool isOK();
+bool isOK(string str);
 
 void setTextColor(long color);
 
