@@ -1,6 +1,6 @@
-Name,id,class,username,password,birthday
+Name,id,class,username,password,birthday,num of sub
 Le Quoc Anh,20125020,20CTT2,Tlqanh,20125020,5052002
-Vo Huy Dang,20125022,20CTT2,Tbhdang,1,7052002
+Vo Huy Dang,20125022,20CTT2,Tbhdang,2,7052002
 Nguyen Nhat Hao,20125028,20CTT2,Tnnhao,20125028,11052002
 Le Minh Hoang,20125030,20CTT2,Tlmhoang,20125030,11052002
 Bui Trong Nhan,20125044,20CTT2,Tbtnhan,20125044,7052002
