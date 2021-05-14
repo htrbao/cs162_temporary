@@ -19,4 +19,6 @@ void studentMenu(studentNode*& pItem);
 
 void viewCourses(studentNode* pItem);
 
+void viewNote(studentNode* pItem);
+
 #endif // !_STUDENTINTERFACE_H_

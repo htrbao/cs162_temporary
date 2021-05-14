@@ -246,7 +246,29 @@ void viewCourses(studentNode* pItem)
 
 	while (pItem->headSubject != nullptr) {
 		n += 2;
-		gotoxy(30, n); cout << pItem->headSubject;
+		gotoxy(30, n); cout << pItem->headSubject->subName;
+		pItem->headSubject = pItem->headSubject->pNext;
+	}
+
+	setTextColor(7);
+	if (_getch())clearStudentScreen();
+}
+
+void viewNote(studentNode* pItem){
+	setTextColor(11);
+	int n = 7;
+	gotoxy(30, n); cout << "Courses";
+	gotoxy(60, n); cout << "Midterm";
+	gotoxy(90, n); cout << "Final";
+	gotoxy(120, n); cout << "Lab";
+	
+	while (pItem->headSubject != nullptr) {
+		n += 2;
+		gotoxy(30, n); cout << pItem->headSubject->subName;
+		gotoxy(60, n); cout << pItem->headSubject->midterm;
+		gotoxy(90, n); cout << pItem->headSubject->final;
+		gotoxy(120, n); cout << pItem->headSubject->lab;
+		pItem->headSubject = pItem->headSubject->pNext;
 	}
 
 	setTextColor(7);
