@@ -15,6 +15,14 @@ void changePassword(staffNode*& pItem);
 
 void creatNewClass();
 
+void DrawAddNewCourse();
+
+void addNewCourse();
+
+void viewAllCourse();
+
+void aboutCourse();
+
 void viewStudent(Class* pClass);
 
 void viewClass();

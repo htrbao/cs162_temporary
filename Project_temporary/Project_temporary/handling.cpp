@@ -103,6 +103,32 @@ void updateStaff(string filename)
 	f.close();
 }
 
+void updateCourse(string filename)
+{
+	ifstream f;
+	f.open(filename);
+	string role;
+	getline(f, role, '\n');
+	while (!f.eof())
+	{
+		course* pItem = new course;
+		//char c;
+		string subName, subID, teacher;
+		getline(f, subName, ',');
+		//cin >> c;
+		getline(f, subID, ',');
+		//cin >> c;
+		getline(f, teacher, '\n');
+		//cin >> c;
+
+		pItem->subName = subName;
+		pItem->subID = subID;
+		pItem->teacher = teacher;
+		addCourseNode(pItem);
+	}
+	f.close();
+}
+
 void addClassNode(string classname)
 {
 	Class* pItem = new Class;
@@ -153,7 +179,7 @@ void addCourseNode(course* pItem)
 {
 	pItem->pNext = nullptr;
 	pItem->pPrev = endCourse;
-	if (!headStaff)
+	if (!headCourse)
 	{
 		headCourse = pItem;
 		endCourse = pItem;
@@ -390,6 +416,17 @@ void cleanUpStaff()
 		headStaff = headStaff->pNext;
 		delete pStaff;
 		pStaff = headStaff;
+	}
+}
+
+void cleanUpCourse()
+{
+	course* pCourse = headCourse;
+	while (pCourse)
+	{
+		headCourse = headCourse->pNext;
+		delete pCourse;
+		pCourse = headCourse;
 	}
 }
 

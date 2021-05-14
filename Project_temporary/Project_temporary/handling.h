@@ -43,8 +43,10 @@ extern staffNode* headStaff, * endStaff;
 long random(long n);
 
 Class* findClass(string classname, bool doAdd);
+
 void updateStudent(string filename);
 void updateStaff(string filename);
+void updateCourse(string filename);
 
 void printBirthday(long b);
 
@@ -66,6 +68,7 @@ bool checkLogin(string username, string password, studentNode*& headStudent, stu
 
 void cleanUpClass();
 void cleanUpStaff();
+void cleanUpCourse();
 
 bool checkk(string username, string password, studentNode*& pSt, staffNode*& pStf);
 #endif // !_HANDLING_H_

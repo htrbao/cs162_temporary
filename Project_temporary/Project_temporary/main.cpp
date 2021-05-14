@@ -19,6 +19,7 @@ int main()
 	SetConsoleWindowInfo(wHnd, TRUE, &windowSize);
 	updateStudent("STUDENT.csv");
 	updateStaff("STAFF.csv");
+	updateCourse("COURSE.csv");
 	//welcome();
 
 	//end
@@ -45,6 +46,7 @@ int main()
 
 	cleanUpClass();
 	cleanUpStaff();
+	cleanUpCourse();
 
 	return 0;
 }

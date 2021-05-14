@@ -236,6 +236,302 @@ void creatNewClass()
 	delete[] selection;
 }
 
+void DrawAddNewCourse()
+{
+	gotoxy(2, 9);  cout << "	.-----.-----.--.--.--.   .----.-----.--.--.----.-----.-----.";
+	gotoxy(2, 10); cout << "	|     |  -__|  |  |  |   |  __|  _  |  |  |   _|__-- |  -__I";
+	gotoxy(2, 11); cout << "	|__|__|_____|________|   |____|_____|_____|__| |_____|_____|";
+}
+
+void addNewCourse()
+{
+	setTextColor(15);
+	DrawAddNewCourse();
+	setTextColor(7);
+	course* pItem = new course;
+
+	roll* selection = new roll[4];
+
+	gotoxy(41, 14); setTextColor(7); cout << "Write course name";
+	gotoxy(41, 17); setTextColor(7); cout << "Write course ID";
+	gotoxy(41, 20); setTextColor(7); cout << "Write name of teacher";
+	drawRec2(1, 3, 79, 22);
+	drawRec(1, 3, 78, 21);
+
+
+	for (long i = 0; i < 3; i++)
+	{
+		selection[i].message = char(16);
+		selection[i].color = 0;
+		selection[i].x = 39;
+		selection[i].y = 14 + i * 3;
+	}
+
+	selection[3].message = "Ok.";
+	selection[3].color = 15;
+	selection[3].x = 83;
+	selection[3].y = 22;
+
+	selection[0].color = 12;
+
+	printSettingBox(selection, 4);
+
+	long cnt = 0;
+
+	while (1)
+	{
+		char c = _getch();
+
+		if (c == char(72) || c == 'w' || c == 'W') cnt--;
+		else if (c == char(80) || c == 's' || c == 'S') cnt++;
+
+		if (cnt < 0) cnt = 3;
+		if (cnt == 4) cnt = 0;
+
+		if (c == char(8)) break;
+
+		if (c == char(13))
+		{
+			if (cnt < 3) {
+				gotoxy(62, 14 + cnt * 3);
+				cout << "                                       ";
+				ShowCur(1);
+				
+				gotoxy(62, 14 + cnt * 3);
+				if (cnt == 0) getline(cin, pItem->subName, '\n');
+				if (cnt == 1) getline(cin, pItem->subID, '\n');
+				if (cnt == 2) getline(cin, pItem->teacher, '\n');
+			}
+			ShowCur(0);
+			if (cnt == 3)
+			{
+				if (pItem->subName == "" || pItem->subID == "" || pItem->teacher == "") 
+				{
+					gotoxy(71, 24); setTextColor(12); cout << "Please fill all the blank";
+				}
+				else
+				{
+					if (isOK(""))
+					{
+						addCourseNode(pItem);
+						break;
+					}
+					else
+					{
+						clearStaffScreen();
+						delete pItem;
+						delete[] selection;
+						addNewCourse();
+					}
+				}
+			}
+		}
+
+		for (long i = 0; i < 4; i++)
+		{
+			selection[i].color = 0;
+		}
+		selection[3].color = 7;
+		selection[cnt].color = (cnt == 3 ? 15 * 16 : 12);
+		printSettingBox(selection, 4);
+	}
+
+	setTextColor(7);
+	clearStaffScreen(); 
+	delete[] selection;
+}
+
+void viewAllCourse()
+{
+	if (!headCourse) {
+		gotoxy(45, 12); setTextColor(12); cout << "No course are created";
+		setTextColor(7);
+	}
+	course* pCourse = headCourse;
+
+	setTextColor(7);
+
+	long i = 0;
+	while (pCourse)
+	{
+		gotoxy(3, 9 + 2 * i);
+		cout << pCourse->subName << (pCourse->subName.size() < 13 ? "\t\t" : "\t") << pCourse->subID << "\t\t" << pCourse->teacher;
+		i++;
+		pCourse = pCourse->pNext;
+	}
+	setTextColor(15 * 16);
+	pCourse = headCourse;
+
+	gotoxy(3, 10); setTextColor(15); for (long j = 1; j <= pCourse->subName.size(); j++) cout << char(22);
+	
+	long cnt = 0;
+
+	while (1)
+	{
+		char c = _getch();
+		
+		if (c == char(72) || c == 'w' || c == 'W')
+		{
+			cnt--;
+			if (pCourse != headCourse) pCourse = pCourse->pPrev;
+			else
+			{
+				pCourse = endCourse;
+				cnt = i - 1;
+			}
+		}
+		else if (c == char(80) || c == 's' || c == 'S')
+		{
+			cnt++;
+			if (pCourse != endCourse)
+			{
+				pCourse = pCourse->pNext;
+			}
+			else
+			{
+				cnt = 0;
+				pCourse = headCourse;
+			}
+		}
+
+		if (c == char(83) || c == char(13))
+		{
+			for (long k = 0; k <= 80; k++)
+			{
+				for (long j = 9; j <= 9 + i * 2; j++)
+				{
+					gotoxy(k, j);
+					cout << ' ';
+				}
+			}
+			course* pTmp = headCourse;
+
+			if (headCourse == endCourse)
+			{ 
+				delete headCourse;
+				headCourse = endCourse = nullptr;
+				return;
+			}
+			else if (cnt == i - 1)
+			{
+				cnt = i - 2;
+				pTmp = endCourse;
+				endCourse = endCourse->pPrev;
+				delete pTmp;
+				endCourse->pNext = nullptr;
+				pCourse = endCourse;
+			}
+			else if (cnt == 0)
+			{
+				pTmp = headCourse->pNext;
+				pTmp->pPrev = headCourse->pPrev;
+				delete headCourse;
+				headCourse = pTmp;
+				pCourse = headCourse;
+			}
+			else
+			{
+				pTmp = pCourse->pNext;
+				pCourse->pNext->pPrev = pCourse->pPrev;
+				pCourse->pPrev->pNext = pCourse->pNext;
+				delete pCourse;
+				pCourse = pTmp;
+			}
+
+			if (!headCourse) return;
+
+			pTmp = headCourse;
+
+			i = 0;
+			while (pTmp)
+			{
+				gotoxy(3, 9 + 2 * i);
+				cout << pTmp->subName << (pTmp->subName.size() < 13 ? "\t\t" : "\t") << pTmp->subID << "\t\t" << pTmp->teacher;
+				i++;
+				pTmp = pTmp->pNext;
+			}
+		}
+
+		if (c == char(8)) break;
+
+		
+		if (cnt != i - 1) {
+			gotoxy(3, 9 + (cnt + 1) * 2 + 1); setTextColor(15); for (long j = 1; j <= pCourse->pNext->subName.size(); j++) cout << " ";
+		}
+		else
+		{
+			gotoxy(3, 9 + (0) * 2 + 1); setTextColor(15); for (long j = 1; j <= headCourse->subName.size(); j++) cout << " ";
+		}
+		if (cnt != 0) {
+			gotoxy(3, 9 + (cnt - 1) * 2 + 1); setTextColor(15); for (long j = 1; j <= pCourse->pPrev->subName.size(); j++) cout << " ";
+		} 
+		else
+		{
+			gotoxy(3, 9 + (i - 1) * 2 + 1); setTextColor(15); for (long j = 1; j <= endCourse->subName.size(); j++) cout << " ";
+		}
+		gotoxy(3, 9 + cnt * 2 + 1); setTextColor(15); for (long j = 1; j <= pCourse->subName.size(); j++) cout << char(22);
+	}
+
+}
+
+void aboutCourse()
+{
+	gotoxy(1, 7); setTextColor(11); cout << "ADD NEW COURSE";
+	
+
+	gotoxy(81, 7); setTextColor(7); cout << "VIEW AVAILABLE COURSE";
+	
+
+	long cnt = 1;
+	while (1)
+	{
+		char c = _getch();
+
+		if (c == char(75) || c == 'a' || c == 'A' || c == char(77) || c == 'd' || c == 'D') cnt = !cnt;
+
+		if (c == 'N' || c == 'n')
+		{
+			gotoxy(1, 7); setTextColor(7); cout << "ADD NEW COURSE";
+
+			gotoxy(81, 7); setTextColor(11); cout << "VIEW AVAILABLE COURSE";
+		}
+		else if (c == 'Y' || c == 'y')
+		{
+			gotoxy(1, 7); setTextColor(11); cout << "ADD NEW COURSE";
+			gotoxy(81, 7); cout << char(22);
+
+			gotoxy(1, 7); setTextColor(7); cout << "VIEW AVAILABLE COURSE";
+			gotoxy(81, 7); cout << char(22);
+		}
+
+		if (c == char(8)) break;
+
+		if (c == char(13))
+		{
+			if (cnt == 1) addNewCourse();
+			else
+			{
+				viewAllCourse();
+			}
+
+		}
+
+		if (cnt == 1)
+		{
+			gotoxy(1, 7); setTextColor(11); cout << "ADD NEW COURSE";
+
+			gotoxy(81, 7); setTextColor(7); cout << "VIEW AVAILABLE COURSE";
+		}
+		if (cnt == 0)
+		{
+			gotoxy(1, 7); setTextColor(7); cout << "ADD NEW COURSE";
+
+			gotoxy(81, 7); setTextColor(11); cout << "VIEW AVAILABLE COURSE";
+		}
+	}
+	clearStaffScreen();
+}
+
 void viewStudent(Class* pClass)
 {
 	setTextColor(7);
@@ -258,7 +554,9 @@ void viewStudent(Class* pClass)
 	}
 
 	gotoxy(2, 10); setTextColor(15); for (long j = 1; j <= pCurClass->name.size(); j++) cout << char(22);
+
 	long cnt = 1;
+
 	while (1)
 	{
 		char c = _getch();
@@ -379,7 +677,7 @@ void viewClass()
 		}
 		i++;
 		pCur = pCur->pNext;
-		if (pCur->pNext == nullptr)
+		if (pCur->name[0] == scYear[0] && pCur->name[1] == scYear[1] && pCur->pNext == nullptr)
 		{
 			gotoxy(2, 7 + i * 2); cout << pCur->name;
 			end = pCur;
@@ -526,7 +824,7 @@ void staffMenu(staffNode*& pItem)
 	setting[0].message = "CREAT NEW CLASS";
 	setting[1].message = "ADD NEW STUDENT";
 	setting[2].message = "VIEW STUDENT";
-	setting[3].message = "ADD NEW COURSE";
+	setting[3].message = "ABOUT COURSE";
 	setting[4].message = "...";
 
 	for (long i = 0; i < numberSetting; i++)
@@ -562,6 +860,9 @@ void staffMenu(staffNode*& pItem)
 			}
 			if (cnt == 2) {
 				viewClass();
+			}
+			if (cnt == 3) {
+				aboutCourse();
 			}
 			if (cnt == 4) {
 				aboutProfile(pItem, isLogOut);
