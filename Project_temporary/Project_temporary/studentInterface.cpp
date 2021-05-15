@@ -3,10 +3,11 @@
 
 void initialStudentBackground(studentNode* pItem)
 {
-	avatar(0, 1, 162, 1);
+	setScreenSize(0, 0, 1471, 690);
+
+	avatar(0, 1, 162, 1); 
 	setTextColor(7);
 	gotoxy(167, 2); cout << pItem->name;
-	setScreenSize(0, 0, 1471, 690);
 	gotoxy(0, 5);
 	for (long i = 0; i <= 199; i++)
 	{
@@ -17,6 +18,8 @@ void initialStudentBackground(studentNode* pItem)
 		gotoxy(160, i);
 		cout << char(219);
 	}
+
+	ShowCur(0);
 }
 
 void clearStudentScreen()
@@ -108,8 +111,6 @@ void changeStudentPassword(studentNode*& pItem)
 		pItem->password = password;
 		gotoxy(32, 11);
 		cout << "Your password is updated " << endl;
-		addDataToStudentCsvFile(headClass);
-		updateStudent("STUDENT.csv");
 		if (_getch())clearStaffScreen();
 	}
 
@@ -300,7 +301,7 @@ void enrollCourse(studentNode*& pItem)
 		for (int i = 1; i < cnt; i++)
 			cur = cur->pNext;
 		gotoxy(30, 6 + 2 * cnt); cout << cur->subName << ", lecturer: " << cur->teacher;
-		if (c == char(13) || c == char(80))
+		if (c == char(13))// || c == char(80))
 		{
 			cur = headCourse;
 			for (int i = 1; i < cnt; i++)
@@ -322,10 +323,14 @@ void enrollCourse(studentNode*& pItem)
 
 			}
 			if (check)
-			{	
+			{
 				cout << pItem->headSubject->subName;
-				addStudentCourse(pItem, cur);
-				addDataToStudentCsvFile(headClass);
+				course* pNew = new course;
+				pNew->subName = cur->subName;
+				pNew->subID = cur->subID;
+				pNew->teacher = cur->teacher;
+				pNew->pNext = nullptr;
+				addStudentCourse(pItem, pNew);
 				/*updateStudent("STUDENT.csv");*/
 				gotoxy(30, 18); cout << "You've enrolled for this course successfully";
 				break;

@@ -60,7 +60,68 @@ void viewProfile(staffNode* pItem)
 
 void changePassword(staffNode*& pItem)
 {
+	string password = "";
+	setColor(7);
+	gotoxy(32, 7); cout << "Enter your current password";
+	int length = 0;
+	char inp;
+	gotoxy(32, 8);
+	while ((inp = inputKey()) != 13)
+	{
+		if (inp != 8 && length < 20)
+		{
+			length++;
+			password.push_back(inp);
+			gotoxy(32 + length, 8);
+			cout << "*";
+		}
+		else
+			if (inp == 8 && length > 0)
+			{
 
+				password.pop_back();
+				gotoxy(32 + length, 8);
+				cout << " ";
+				gotoxy(32 + length, 8);
+				length--;
+			}
+	}
+	if (pItem->password.compare(password)) {
+		gotoxy(32, 9); cout << "Current password is incorrect";
+		if (_getch())clearStaffScreen();
+	}
+	else
+	{
+		gotoxy(32, 9);
+		length = 0;
+		password = "";
+		cout << "Enter your new  password";
+		gotoxy(32, 10);
+		while ((inp = inputKey()) != 13)
+		{
+			if (inp != 8 && length < 20)
+			{
+				length++;
+				password.push_back(inp);
+				gotoxy(32 + length, 10);
+				cout << "*";
+			}
+			else
+				if (inp == 8 && length > 0)
+				{
+
+					password.pop_back();
+					gotoxy(32 + length, 10);
+					cout << " ";
+					gotoxy(32 + length, 10);
+					length--;
+				}
+		}
+		pItem->password = password;
+		gotoxy(32, 11);
+		cout << "Your password is updated " << endl;
+		if (_getch())clearStaffScreen();
+	}
 }
 
 void creatNewClass()

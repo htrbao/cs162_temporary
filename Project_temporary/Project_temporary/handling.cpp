@@ -325,8 +325,9 @@ bool addFromCSV(string filename)
 	return true;
 }
 
-void addDataToStaffCsvFile(staffNode* pItem)
+void addDataToStaffCsvFile()
 {
+	staffNode* pItem = headStaff;
 	ofstream fout;
 	fout.open("STAFF.csv", ios::trunc);
 	fout << "Name" << "," << "id" << "," << "username" << "," << "password" << "," << "birthday" ;
@@ -338,10 +339,11 @@ void addDataToStaffCsvFile(staffNode* pItem)
 
 }
 
-void addDataToStudentCsvFile(Class* pItem) {
+void addDataToStudentCsvFile() {
 	ofstream fout;
 	fout.open("STUDENT.csv", ios::trunc);
 	fout << "Name" << "," << "id" << ",class," << "username" << "," << "password" << "," << "birthday" << "," << "num of sub";
+	Class* pItem = headClass;
 	while (pItem) 
 	{
 		while (pItem->headStudent != nullptr) 
@@ -358,6 +360,19 @@ void addDataToStudentCsvFile(Class* pItem) {
 	}
 		fout.close();
 	
+}
+
+void addDataToCourseCsvFile()
+{
+	course* pItem = headCourse;
+	ofstream fout;
+	fout.open("COURSE.csv", ios::trunc);
+	fout << "subName" << "," << "subID" << "," << "Teacher";
+	while (pItem != nullptr) {
+		fout << '\n' << pItem->subName << "," << pItem->subID << "," << pItem->teacher;
+		pItem = pItem->pNext;
+	}
+	fout.close();
 }
 
 void addFromKeyb(string name, string id, string cl, string username, string password, string birthday, string role, studentNode*& headStudent, studentNode*& endStudent)

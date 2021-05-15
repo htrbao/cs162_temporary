@@ -39,11 +39,16 @@ int main()
 			staffMenu(headStaff);
 		}
 		long n;
+		system("cls");
 		cin >> n;
 		if (n == 0) break;
 	}
 
 	//staffMenu(headStaff);
+
+	addDataToStaffCsvFile();
+	addDataToStudentCsvFile();
+	addDataToCourseCsvFile();
 
 	cleanUpClass();
 	cleanUpStaff();

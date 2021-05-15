@@ -62,8 +62,9 @@ int numOfCourse();
 
 bool addFromCSV(string filename);
 
-void addDataToStaffCsvFile(staffNode* pHead);
-void addDataToStudentCsvFile(Class* pHead);
+void addDataToStaffCsvFile();
+void addDataToStudentCsvFile();
+void addDataToCourseCsvFile();
 
 void addFromKeyb(string name, string id, string cl, string username, string password, string birthday, string role, studentNode*& headStudent, studentNode*& endStudent);
 
