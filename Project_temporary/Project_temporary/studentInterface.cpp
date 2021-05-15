@@ -220,6 +220,10 @@ void studentMenu(studentNode*& pItem)
 				aboutStudentProfile(pItem, isLogOut);
 				if (isLogOut) break;
 			}
+			if (!cnt)
+			{
+				viewCourses(pItem);
+			}
 			
 		}
 
@@ -241,9 +245,10 @@ void viewCourses(studentNode* pItem)
 {
 	setTextColor(11);
 	int n = 7;
-	gotoxy(30, n); cout << "Courses: " << endl << pItem->headSubject->subName;
+	gotoxy(30, n); cout << "Courses: ";
+	gotoxy(30, n + 2); cout <<  pItem->headSubject->subName;
 	pItem->headSubject = pItem->headSubject->pNext;
-
+	n += 2;
 	while (pItem->headSubject != nullptr) {
 		n += 2;
 		gotoxy(30, n); cout << pItem->headSubject->subName;
@@ -251,7 +256,7 @@ void viewCourses(studentNode* pItem)
 	}
 
 	setTextColor(7);
-	if (_getch())clearStudentScreen();
+	if (_getch())clearStaffScreen();
 }
 
 void viewNote(studentNode* pItem){
