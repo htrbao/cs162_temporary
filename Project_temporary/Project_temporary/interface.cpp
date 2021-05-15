@@ -918,7 +918,7 @@ void ellipses(int posX, int posY)
 {
 	int n = 46;
 
-	for (int i = 0; i < 60; i++) {
+	for (int i = 0; i < 3; i++) {
 		gotoxy(posX, posY);
 		Sleep(800);
 		if (i % 4 == 1) cout << char(n);

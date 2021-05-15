@@ -622,7 +622,6 @@ void viewStudent(Class* pClass)
 	if (!pCurClass)
 	{
 		warning("No student here", 9, 20, 59, 19);
-		system("pause");
 		return;
 	}
 

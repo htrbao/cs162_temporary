@@ -69,6 +69,7 @@ void updateStudent(string filename)
 		pItem->password = password;
 		pItem->birthday = stoi(birthday);
 		pItem->numOfSub = (numofsub);
+
 		Class* pClass = findClass(cl, 1);
 		if (!numofsub) {
 			addStudentNode(pClass, pItem);
@@ -84,10 +85,15 @@ void updateStudent(string filename)
 				getline(f, courseID, ',');
 			}
 			else getline(f, courseID, '\n');
+			//cout << courseID;
 			course* cur = headCourse;
 			while (cur && cur->subID.compare(courseID))
 				cur = cur->pNext;
-			addStudentCourse(pItem, cur);
+			course* pNew = new course;
+			pNew->subName = cur->subName;
+			pNew->subID = cur->subID;
+			pNew->teacher = cur->teacher;
+			addStudentCourse(pItem, pNew);
 			//cout << cur->subName;
 		}
 		
@@ -443,7 +449,7 @@ bool checkLogin(string username, string password, studentNode*& headStudent, stu
 		staffNode* temp = headStaff;
 		while (temp)
 		{
-			if (!temp->username.compare(username) && !temp->password.compare(password))
+			if (temp->username == username && temp->password == password)
 			{
 				//invoke staffInterface funtion here with temp as a argument
 				pStf = temp;

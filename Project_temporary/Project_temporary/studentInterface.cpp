@@ -290,6 +290,8 @@ void enrollCourse(studentNode*& pItem)
 	{
 		char c = _getch();
 
+		if (c == char(8)) break;
+
 		if (c == char(72) || c == 'w' || c == 'W') cnt--;
 		else if (c == char(80) || c == 's' || c == 'S') cnt++;
 		if (cnt == 0) cnt = 1;

@@ -104,7 +104,6 @@ void loginScreen(studentNode*& pSt, staffNode*& pStf)
 				length--;
 			}
 	}
-	//cout << password;
 	while (!checkk(username, password, pSt, pStf))
 	{
 		reLogin(username, password);
