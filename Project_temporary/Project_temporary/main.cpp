@@ -25,23 +25,23 @@ int main()
 	//cout << headClass->headStudent->pNext->headSubject->subName;
 	//end
 
-	//while (1)
-	//{
-	//	studentNode* pStudent = nullptr;
-	//	staffNode* pStaff = nullptr;
-	//	loginScreen(pStudent, pStaff);
+	while (1)
+	{
+		studentNode* pStudent = nullptr;
+		staffNode* pStaff = nullptr;
+		loginScreen(pStudent, pStaff);
 
-	//	ShowCur(0);
-	//	if (pStudent) {
-	//		studentMenu(pStudent);
-	//	}
-	//	else if (headStaff) {
-	//		staffMenu(headStaff);
-	//	}
-	//	long n;
-	//	cin >> n;
-	//	if (n == 0) break;
-	//}
+		ShowCur(0);
+		if (pStudent) {
+			studentMenu(pStudent);
+		}
+		else if (headStaff) {
+			staffMenu(headStaff);
+		}
+		long n;
+		cin >> n;
+		if (n == 0) break;
+	}
 
 	//staffMenu(headStaff);
 
