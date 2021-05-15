@@ -77,22 +77,22 @@ void updateStudent(string filename)
 		}
 		f >> comma;
 		pItem->numOfSub = (numofsub);
-		string courseID;
+		string courseID, courseName, Cteacher;
 		for (int i = 0; i < (numofsub); i++)
 		{
+			getline(f, courseName, ',');
+			getline(f, courseID, ',');
 			if (i != (numofsub)-1)
 			{
-				getline(f, courseID, ',');
+				getline(f, Cteacher, ',');
 			}
-			else getline(f, courseID, '\n');
+			else getline(f, Cteacher, '\n');
 			//cout << courseID;
-			course* cur = headCourse;
-			while (cur && cur->subID.compare(courseID))
-				cur = cur->pNext;
+
 			course* pNew = new course;
-			pNew->subName = cur->subName;
-			pNew->subID = cur->subID;
-			pNew->teacher = cur->teacher;
+			pNew->subName = courseName;
+			pNew->subID = courseID;
+			pNew->teacher = Cteacher;
 			addStudentCourse(pItem, pNew);
 			//cout << cur->subName;
 		}
