@@ -19,7 +19,8 @@ struct course {
 struct studentNode {
 	string name, id, classname, username, password;
 	long birthday; //ddmmyyyy
-	course* headSubject,* endSubject;
+	int numOfSub;
+	course* headSubject = nullptr,* endSubject = nullptr;
 	studentNode* pNext,* pPrev;
 };
 
@@ -54,6 +55,7 @@ void addClassNode(string classname);
 void addStudentNode(Class*& pClass, studentNode* pItem);
 void addStaffNode(staffNode* pItem);
 void addCourseNode(course* pItem);
+void addStudentCourse(studentNode* &pNode, course* pCourse);
 
 bool addFromCSV(string filename);
 

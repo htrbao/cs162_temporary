@@ -45,26 +45,53 @@ void updateStudent(string filename)
 		studentNode* pItem = new studentNode;
 		//char c;
 		string name, id, cl, username, password, birthday;
+		int numofsub;
+		
 		getline(f, name, ',');
+		//cout << name << endl;
 		//cin >> c;
 		getline(f, id, ',');
-
+		char comma;
+		
 		getline(f, cl, ',');
 		//cin >> c;
 		getline(f, username, ',');
 		//cin >> c;
 		getline(f, password, ',');
-		//cin >> c;
-		getline(f, birthday, '\n');
+		//cin >> c
 
-		Class* pClass = findClass(cl, 1);
-
+		getline(f, birthday, ',');
+		f >> numofsub;
 		pItem->name = name;
 		pItem->id = id;
 		pItem->classname = cl;
 		pItem->username = username;
 		pItem->password = password;
 		pItem->birthday = stoi(birthday);
+		Class* pClass = findClass(cl, 1);
+		if (!numofsub) {
+			addStudentNode(pClass, pItem);
+			f.ignore(); continue;
+		}
+		f >> comma;
+		pItem->numOfSub = (numofsub);
+		string courseID;
+		for (int i = 0; i < (numofsub); i++)
+		{
+			if (i != (numofsub)-1)
+			{
+				getline(f, courseID, ',');
+			}
+			else getline(f, courseID, '\n');
+			course* cur = headCourse;
+			while (cur && cur->subID.compare(courseID))
+				cur = cur->pNext;
+			addStudentCourse(pItem, cur);
+			cout << cur->subName;
+		}
+		
+
+		
 		addStudentNode(pClass, pItem);
 
 		//f.ignore();
@@ -189,6 +216,29 @@ void addCourseNode(course* pItem)
 	endCourse = endCourse->pNext;
 }
 
+void addStudentCourse(studentNode* &pNode, course* pCourse)
+{	
+	
+	course* pItem = new course;
+	//copy the info
+	pItem->midterm = pCourse->midterm;
+	pItem->final = pCourse->final;
+	pItem->lab = pCourse->lab;
+	pItem->subName = pCourse->subName;
+	pItem->subID = pCourse->subID;
+	pItem->teacher = pCourse->teacher;
+	pItem->pNext = nullptr;
+	if (!pNode->headSubject)
+	{
+		pNode->headSubject = pItem;
+		pNode->endSubject = pItem;
+		return;
+	}
+	pItem->pPrev = pNode->endSubject;
+	pNode->endSubject->pNext = pItem;
+	pNode->endSubject = pItem;
+}
+
 bool addFromCSV(string filename)
 {
 	ifstream f;
@@ -267,7 +317,7 @@ void addDataToStaffCsvFile(staffNode* pItem)
 {
 	ofstream fout;
 	fout.open("STAFF.csv", ios::trunc);
-	fout << "Name" << "," << "id" << "," << "username" << "," << "password" << "," << "birthday";
+	fout << "Name" << "," << "id" << "," << "username" << "," << "password" << "," << "birthday" ;
 	while (pItem != nullptr) {
 		fout << '\n' << pItem->name << "," << pItem->id << "," << pItem->username << "," << pItem->password << "," << pItem->birthday;
 		pItem = pItem->pNext;
@@ -279,7 +329,7 @@ void addDataToStaffCsvFile(staffNode* pItem)
 void addDataToStudentCsvFile(Class* pItem) {
 	ofstream fout;
 	fout.open("STUDENT.csv", ios::trunc);
-	fout << "Name" << "," << "id" << ",class," << "username" << "," << "password" << "," << "birthday";
+	fout << "Name" << "," << "id" << ",class," << "username" << "," << "password" << "," << "birthday" << "," << "num of sub";
 	while (pItem) 
 	{
 		while (pItem->headStudent != nullptr) 
