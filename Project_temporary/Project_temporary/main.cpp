@@ -17,13 +17,14 @@ int main()
 	COORD bufferSize = { 200, 9001 };
 	SetConsoleScreenBufferSize(wHnd, bufferSize);
 	SetConsoleWindowInfo(wHnd, TRUE, &windowSize);
+	updateCourse("COURSE.csv");
 	updateStudent("STUDENT.csv");
 	updateStaff("STAFF.csv");
-	updateCourse("COURSE.csv");
+	
 	//welcome();
-
+	//cout << headCourse->subName;
 	//end
-
+	
 	while (1)
 	{
 		studentNode* pStudent = nullptr;

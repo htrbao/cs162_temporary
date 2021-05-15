@@ -23,7 +23,7 @@ void clearStudentScreen()
 {
 	for (long i = 0; i <= 159; i++)
 	{
-		for (long j = 9; j <= 40; j++)
+		for (long j = 6; j <= 40; j++)
 		{
 			gotoxy(i, j);
 			cout << ' ';
@@ -209,7 +209,8 @@ void studentMenu(studentNode*& pItem)
 	system("cls");
 	initialStudentBackground(pItem);
 	printSettingBox(setting, numberSetting);
-	while (1) {
+	while (1) 
+	{
 		char c = _getch();
 
 		if (c == char(75) || c == 'a' || c == 'A') cnt--;
@@ -220,7 +221,17 @@ void studentMenu(studentNode*& pItem)
 				aboutStudentProfile(pItem, isLogOut);
 				if (isLogOut) break;
 			}
-			
+			if (!cnt)
+			{
+				viewCourses(pItem);
+			}
+			if (cnt == 1)
+			{
+				enrollCourse(pItem);
+			}
+			if (pItem->headSubject)
+			{ }
+
 		}
 
 		if (cnt < 0) cnt = numberSetting - 1;
@@ -236,14 +247,114 @@ void studentMenu(studentNode*& pItem)
 	}
 	delete[] setting;
 }
+int courseEnrolled(studentNode* pItem)
+{
+	int count = 0;
+	course* cur = pItem->headSubject;
+	while (cur)
+	{
+		count++;
+		cur = cur->pNext;
+	}
+	return count;
+}
+void printCourse()
+{	
+	setTextColor(7);
+	int n;
+	n = 6;
+	gotoxy(30, n); cout << "Available courses";
+	course* cur = headCourse;
+	while (cur)
+	{
+		n += 2;
+		gotoxy(30, n); cout << cur->subName << ", lecturer: " << cur->teacher;
+		cur = cur->pNext;
+	}
+}
+void enrollCourse(studentNode*& pItem)
+{	
+	
+	
+	int cnt = 1;
+	course* cur = nullptr;
+	printCourse();
+	setTextColor(11);
+	cur = headCourse;
+	for (int i = 1; i < cnt; i++)
+		cur = cur->pNext;
+	gotoxy(30, 6 + 2 * cnt); cout << cur->subName << ", lecturer: " << cur->teacher;
+		
+	while (1)
+	{
+		char c = _getch();
+
+		if (c == char(72) || c == 'w' || c == 'W') cnt--;
+		else if (c == char(80) || c == 's' || c == 'S') cnt++;
+		if (cnt == 0) cnt = 1;
+		//cout << cnt;
+		if (cnt > numOfCourse()) cnt = numOfCourse();
+		printCourse();
+		setTextColor(11);
+		cur = headCourse;
+		for (int i = 1; i < cnt; i++)
+			cur = cur->pNext;
+		gotoxy(30, 6 + 2 * cnt); cout << cur->subName << ", lecturer: " << cur->teacher;
+		if (c == char(13) || c == char(80))
+		{
+			cur = headCourse;
+			for (int i = 1; i < cnt; i++)
+				cur = cur->pNext;
+			bool check = true;
+			if (courseEnrolled(pItem) == 5) check = false;
+			course* cur2 = pItem->headSubject;
+			while (cur2)
+			{
+				if (!cur2->subName.compare(cur->subName))
+				{
+					check = false;
+					break;
+				}
+				cur2 = cur2->pNext;
+			}
+			if (pItem->headSubject)
+			{
+
+			}
+			if (check)
+			{	
+				cout << pItem->headSubject->subName;
+				addStudentCourse(pItem, cur);
+				addDataToStudentCsvFile(headClass);
+				/*updateStudent("STUDENT.csv");*/
+				gotoxy(30, 18); cout << "You've enrolled for this course successfully";
+				break;
+			}
+			else
+			{
+				gotoxy(30, 18); cout << "You can't enrol for this course";
+				break;
+			}
+		}
+	}
+	if (_getch())clearStaffScreen();
+	clearStaffScreen();
+}
 
 void viewCourses(studentNode* pItem)
-{
+{	
+	
 	setTextColor(11);
 	int n = 7;
-	gotoxy(30, n); cout << "Courses: " << endl << pItem->headSubject->subName;
+	gotoxy(30, n); cout << "You enrolled for " << courseEnrolled(pItem) << " courses(s)";
+	if (!pItem->headSubject)
+	{
+		if (_getch())clearStaffScreen();
+		return;
+	}
+	gotoxy(30, n + 2); cout <<  pItem->headSubject->subName;
 	pItem->headSubject = pItem->headSubject->pNext;
-
+	n += 2;
 	while (pItem->headSubject != nullptr) {
 		n += 2;
 		gotoxy(30, n); cout << pItem->headSubject->subName;
@@ -251,7 +362,7 @@ void viewCourses(studentNode* pItem)
 	}
 
 	setTextColor(7);
-	if (_getch())clearStudentScreen();
+	if (_getch())clearStaffScreen();
 }
 
 void viewNote(studentNode* pItem){
