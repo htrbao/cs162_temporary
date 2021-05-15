@@ -68,6 +68,7 @@ void updateStudent(string filename)
 		pItem->username = username;
 		pItem->password = password;
 		pItem->birthday = stoi(birthday);
+		pItem->numOfSub = (numofsub);
 		Class* pClass = findClass(cl, 1);
 		if (!numofsub) {
 			addStudentNode(pClass, pItem);
@@ -334,7 +335,12 @@ void addDataToStudentCsvFile(Class* pItem) {
 	{
 		while (pItem->headStudent != nullptr) 
 		{
-			fout << '\n' << pItem->headStudent->name << "," << pItem->headStudent->id << "," << pItem->headStudent->classname << "," << pItem->headStudent->username  << "," << pItem->headStudent->password << "," << pItem->headStudent->birthday;
+			fout << '\n' << pItem->headStudent->name << "," << pItem->headStudent->id << "," << pItem->headStudent->classname << "," << pItem->headStudent->username  << "," << pItem->headStudent->password << "," << pItem->headStudent->birthday<<"," << pItem->headStudent->numOfSub;
+			while (pItem->headStudent->headSubject)
+			{
+				fout << "," << pItem->headStudent->headSubject->subID;
+				pItem->headStudent->headSubject = pItem->headStudent->headSubject->pNext;
+			}
 			pItem->headStudent = pItem->headStudent->pNext;
 		}
 		pItem = pItem->pNext;

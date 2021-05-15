@@ -24,8 +24,8 @@ int main()
 	//welcome();
 	//cout << headClass->headStudent->pNext->headSubject->subName;
 	//end
-
-	while (1)
+	addDataToStudentCsvFile(headClass);
+	/*while (1)
 	{
 		studentNode* pStudent = nullptr;
 		staffNode* pStaff = nullptr;
@@ -41,7 +41,7 @@ int main()
 		long n;
 		cin >> n;
 		if (n == 0) break;
-	}
+	}*/
 
 	//staffMenu(headStaff);
 
