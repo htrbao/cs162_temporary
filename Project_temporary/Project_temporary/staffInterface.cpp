@@ -4,7 +4,7 @@ void clearStaffScreen()
 {
 	for (long i = 0; i <= 159; i++)
 	{
-		for (long j = 7; j <= 40; j++)
+		for (long j = 6; j <= 40; j++)
 		{
 			gotoxy(i, j);
 			cout << ' ';

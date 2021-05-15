@@ -88,7 +88,7 @@ void updateStudent(string filename)
 			while (cur && cur->subID.compare(courseID))
 				cur = cur->pNext;
 			addStudentCourse(pItem, cur);
-			cout << cur->subName;
+			//cout << cur->subName;
 		}
 		
 
@@ -240,6 +240,18 @@ void addStudentCourse(studentNode* &pNode, course* pCourse)
 	pNode->endSubject = pItem;
 }
 
+int numOfCourse()
+{
+	int count = 0;
+	course* cur = headCourse;
+	while (cur)
+	{
+		cur = cur->pNext;
+		count++;
+	}
+	return count;
+}
+
 bool addFromCSV(string filename)
 {
 	ifstream f;
@@ -335,7 +347,7 @@ void addDataToStudentCsvFile(Class* pItem) {
 	{
 		while (pItem->headStudent != nullptr) 
 		{
-			fout << '\n' << pItem->headStudent->name << "," << pItem->headStudent->id << "," << pItem->headStudent->classname << "," << pItem->headStudent->username  << "," << pItem->headStudent->password << "," << pItem->headStudent->birthday<<"," << pItem->headStudent->numOfSub;
+			fout << '\n' << pItem->headStudent->name << "," << pItem->headStudent->id << "," << pItem->headStudent->classname << "," << pItem->headStudent->username  << "," << pItem->headStudent->password << "," << pItem->headStudent->birthday<<"," << courseEnrolled(pItem->headStudent);
 			while (pItem->headStudent->headSubject)
 			{
 				fout << "," << pItem->headStudent->headSubject->subID;

@@ -17,6 +17,10 @@ void aboutStudentProfile(studentNode*& pItem, bool& isLogOut);
 
 void studentMenu(studentNode*& pItem);
 
+int courseEnrolled(studentNode* pItem);
+
+void enrollCourse(studentNode*& pItem);
+
 void viewCourses(studentNode* pItem);
 
 void viewNote(studentNode* pItem);

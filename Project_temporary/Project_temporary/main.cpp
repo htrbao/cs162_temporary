@@ -22,10 +22,10 @@ int main()
 	updateStaff("STAFF.csv");
 	
 	//welcome();
-	//cout << headClass->headStudent->pNext->headSubject->subName;
+	//cout << headCourse->subName;
 	//end
-	addDataToStudentCsvFile(headClass);
-	/*while (1)
+	
+	while (1)
 	{
 		studentNode* pStudent = nullptr;
 		staffNode* pStaff = nullptr;
@@ -41,7 +41,7 @@ int main()
 		long n;
 		cin >> n;
 		if (n == 0) break;
-	}*/
+	}
 
 	//staffMenu(headStaff);
 

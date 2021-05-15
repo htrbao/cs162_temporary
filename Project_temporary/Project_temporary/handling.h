@@ -8,6 +8,7 @@
 #include <ctime>
 
 
+
 using namespace std;
 
 struct course {
@@ -41,6 +42,7 @@ extern Class* headClass,* endClass;
 extern staffNode* headStaff, * endStaff;
 
 #include "staffInterface.h"
+#include "studentInterface.h"
 long random(long n);
 
 Class* findClass(string classname, bool doAdd);
@@ -56,6 +58,7 @@ void addStudentNode(Class*& pClass, studentNode* pItem);
 void addStaffNode(staffNode* pItem);
 void addCourseNode(course* pItem);
 void addStudentCourse(studentNode* &pNode, course* pCourse);
+int numOfCourse();
 
 bool addFromCSV(string filename);
 
