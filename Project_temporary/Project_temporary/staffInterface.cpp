@@ -243,6 +243,18 @@ void DrawAddNewCourse()
 	gotoxy(2, 11); cout << "	|__|__|_____|________|   |____|_____|_____|__| |_____|_____|";
 }
 
+void addNewStudent()
+{
+	gotoxy(8, 8); setTextColor(15);  cout << "Check your ADDNEWSTUDENTS.CSV file and press <enter> to complete";
+	char c;
+	while (c = _getch())
+	{
+		if (c == char(13)) break;
+	}
+	addFromCSV("ADDNEWSTUDENTS.csv");
+	clearStaffScreen();
+}
+
 void addNewCourse()
 {
 	setTextColor(15);
@@ -856,7 +868,7 @@ void staffMenu(staffNode*& pItem)
 				creatNewClass();
 			}
 			if (cnt == 1) {
-
+				addNewStudent();
 			}
 			if (cnt == 2) {
 				viewClass();

@@ -17,6 +17,8 @@ void creatNewClass();
 
 void DrawAddNewCourse();
 
+void addNewStudent();
+
 void addNewCourse();
 
 void viewAllCourse();

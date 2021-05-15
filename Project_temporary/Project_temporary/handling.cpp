@@ -197,7 +197,6 @@ bool addFromCSV(string filename)
 	getline(f, role, '\n');
 	while (!f.eof())
 	{
-		f.ignore();
 		getline(f, role, ',');
 		cout << role;
 		if (role == "student") {
